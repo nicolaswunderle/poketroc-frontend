@@ -1,0 +1,7 @@
+{
+  "name": "poketroc-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
