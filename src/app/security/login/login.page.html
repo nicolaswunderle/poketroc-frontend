@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="ion-padding">
+    <form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
+      <!-- Pseudo input -->
+      <ion-input
+        label="Pseudo"
+        labelPlacement="floating"
+        inputmode="text"
+        #pseudo="ngModel"
+        required="true"
+        name="pseudo"
+        [(ngModel)]="authRequest.pseudo"
+      ></ion-input>
+      <!-- Error message displayed if the pseudo is invalid -->
+      <ion-text color="danger" *ngIf="pseudo.invalid && pseudo.touched"
+        >Pseudo is required.</ion-text
+      >
+  
+      <!-- Password input -->
+      <ion-input
+        label="Password"
+        labelPlacement="floating"
+        inputmode="text"
+        #password="ngModel"
+        required="true"
+        type="password"
+        name="password"
+        [(ngModel)]="authRequest.mot_de_passe"
+      ></ion-input>
+  
+      <!-- Error message displayed if the password is invalid -->
+      <ion-text color="danger" *ngIf="password.invalid && password.touched"
+        >Password is required.</ion-text
+      >
+  
+      <!-- Submit button -->
+      <ion-button type="submit" expand="block" [disabled]="loginForm.invalid"
+        >Log in</ion-button
+      >
+  
+      <!-- Error message displayed if the login failed -->
+      <ion-text color="danger" *ngIf="loginError"
+        >Pseudo or password is invalid.</ion-text
+      >
+    </form>
+  </div>
+</ion-content>
