@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inscription</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Inscription</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <form class="register-content" (ngSubmit)="onSubmit()" #registerForm="ngForm">
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" fill="solid" label="Nom" labelPlacement="floating" helperText="Enter a valid firstname" errorText="Invalid firstname" [(ngModel)]="lastname" name="lastname" required text></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" fill="solid" label="Prénom" labelPlacement="floating" helperText="Enter a valid name" errorText="Invalid name" [(ngModel)]="firstname" name="firstname" required text></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" fill="solid" label="Pseudo" labelPlacement="floating" helperText="Enter a valid pseudo" errorText="Invalid pseudo" [(ngModel)]="pseudo" name="pseudo" required text></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="email" fill="solid" label="Email" labelPlacement="floating" helperText="Enter a valid email" errorText="Invalid email" [(ngModel)]="email" name="email" required email></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" fill="solid" label="Mot de passe" labelPlacement="floating" helperText="Enter a valid password" errorText="Invalid password" [(ngModel)]="password" name="password" required password></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="date" fill="solid" label="Date de naissance" labelPlacement="floating" helperText="Enter a valid date" errorText="Invalid date" [(ngModel)]="date" name="date" date></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox [(ngModel)]="deck" name="deck">Deck visible</ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" type="submit" [disabled]="!registerForm.valid">S'inscrire</ion-button>
+  </form>
+</ion-content>
+
+
