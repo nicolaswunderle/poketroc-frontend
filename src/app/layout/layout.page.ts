@@ -1,8 +1,11 @@
-import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { IonicModule } from "@ionic/angular";
 import { add, map, list } from "ionicons/icons";
+import { SharedModule } from 'src/app/shared-module';
+// import { 
+//   IonHeader,
+//   IonToolbar,
+//   IonTitle 
+// } from "@ionic/angular/standalone";
 
 // Custom type that represent a tab data.
 declare type PageTab = {
@@ -16,7 +19,12 @@ declare type PageTab = {
   templateUrl: './layout.page.html',
   styleUrls: ['./layout.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [
+    SharedModule,
+    // IonHeader,
+    // IonToolbar,
+    // IonTitle
+  ]
 })
 export class LayoutPage {
   tabs: PageTab[];
