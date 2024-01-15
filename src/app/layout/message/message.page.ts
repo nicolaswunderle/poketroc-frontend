@@ -4,15 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
-  selector: 'app-echanges',
-  templateUrl: './echanges.page.html',
-  styleUrls: ['./echanges.page.scss'],
+  selector: 'app-message',
+  templateUrl: './message.page.html',
+  styleUrls: ['./message.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class EchangesPage implements OnInit {
-  //concerne la création des onglets
-  segmentModel: string = "attente";
+export class MessagePage implements OnInit {
+
   constructor() { }
 
   ngOnInit() {

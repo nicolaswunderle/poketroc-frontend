@@ -29,8 +29,8 @@ export const routes: Routes = [
           loadComponent: () => import('./layout/profil/profil.page').then(m => m.ProfilPage)
         },
         {
-          path: 'deck',
-          loadComponent: () => import('./layout/deck/deck.page').then( m => m.DeckPage)
+          path: 'message',
+          loadComponent: () => import('./layout/message/message.page').then(m => m.MessagePage)
         },
         {
           path: '',
@@ -41,8 +41,6 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    loadComponent: () => import('./security/login/login.page').then( m => m.LoginPage)
+    loadComponent: () => import('./security/login/login.page').then(m => m.LoginPage)
   },
- 
-
 ];
