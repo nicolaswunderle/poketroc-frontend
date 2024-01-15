@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { SharedModule } from 'src/app/shared-module';
+// import { IonList, IonItem, IonThumbnail, IonLabel } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-deck',
   templateUrl: './deck.page.html',
   styleUrls: ['./deck.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [SharedModule]
+  // imports: [SharedModule, IonList, IonItem, IonThumbnail, IonLabel]
 })
 export class DeckPage implements OnInit {
 

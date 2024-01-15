@@ -1,17 +1,18 @@
-import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { FormsModule, NgForm } from "@angular/forms";
+import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
-import { IonicModule } from "@ionic/angular";
 import { AuthRequest } from "../auth-request.model";
 import { AuthService } from "../auth.service";
+import { SharedModule } from 'src/app/shared-module';
+// import { IonButton, IonContent, IonHeader, IonInput, IonText, IonTitle, IonToolbar } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [SharedModule]
+  // imports: [SharedModule, IonButton, IonContent, IonHeader, IonInput, IonText, IonTitle, IonToolbar]
 })
 export class LoginPage {
   /**
