@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -14,9 +13,25 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  registerForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.registerForm = this.fb.group({
+      lastname: ['', Validators.required],
+      firstname: ['', Validators.required],
+      pseudo: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password:['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
+  registerUser(){
+
+
+  }
 
   ngOnInit() {
+    console.log(this.registerForm.value);
   }
 
 }
