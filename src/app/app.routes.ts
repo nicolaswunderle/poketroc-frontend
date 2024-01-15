@@ -3,7 +3,7 @@ import { onlyAuthenticated } from "./security/only-authenticated.guard";
 
 export const routes: Routes = [
   {
-    path: "",
+    path: "machin",
     loadComponent: () =>
       import("./layout/layout.page").then((m) => m.LayoutPage),
       canActivate: [onlyAuthenticated],
@@ -44,7 +44,7 @@ export const routes: Routes = [
     loadComponent: () => import('./security/login/login.page').then( m => m.LoginPage)
   },
   {
-    path: 'register',
+    path: '',
     loadComponent: () => import('./security/register/register.page').then( m => m.RegisterPage)
   },
 ];

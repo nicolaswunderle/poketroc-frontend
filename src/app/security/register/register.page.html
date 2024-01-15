@@ -10,35 +10,32 @@
       <ion-title size="large">Inscription</ion-title>
     </ion-toolbar>
   </ion-header>
-  <form>
+  <form class="register-content" (ngSubmit)="onSubmit()" #registerForm="ngForm">
     <ion-list>
-      <ion-item for="lastname">
-        <ion-input type="text" formControlName="lastname"
-        fill="solid" label="Nom" labelPlacement="floating" helperText="Enter a valid lastname" errorText="Invalid lastname" ngModel text></ion-input>
-      </ion-item>
-      <ion-item for="firstname">
-        <ion-input type="text" formControlName="firstname"
-        fill="solid" label="Prénom" labelPlacement="floating" helperText="Enter a valid firstname" errorText="Invalid firstname" ngModel text></ion-input>
-      </ion-item>
-      <ion-item for="pseudo">
-        <ion-input type="text" formControlName="pseudo"
-        fill="solid" label="Pseudo" labelPlacement="floating" helperText="Enter a valid pseudo" errorText="Invalid pseudo" ngModel text></ion-input>
-      </ion-item>
-      <ion-item for="email">
-        <ion-input type="email" formControlName="email"
-        fill="solid" label="Email" labelPlacement="floating" helperText="Enter a valid email" errorText="Invalid email" ngModel email></ion-input>
-      </ion-item>
-      <ion-item for="password">
-        <ion-input type="password" formControlName="password"
-        fill="solid" label="Mot de passe" labelPlacement="floating" helperText="Enter a valid password" errorText="Invalid password" ngModel password></ion-input>
+      <ion-item>
+        <ion-input type="text" fill="solid" label="Nom" labelPlacement="floating" helperText="Enter a valid firstname" errorText="Invalid firstname" [(ngModel)]="lastname" name="lastname" required text></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="date" fill="solid" label="Date de naissance" labelPlacement="floating" helperText="Enter a valid date" errorText="Invalid date" ngModel date></ion-input>
+        <ion-input type="text" fill="solid" label="Prénom" labelPlacement="floating" helperText="Enter a valid name" errorText="Invalid name" [(ngModel)]="firstname" name="firstname" required text></ion-input>
       </ion-item>
       <ion-item>
-        <ion-checkbox>Deck visible</ion-checkbox>
+        <ion-input type="text" fill="solid" label="Pseudo" labelPlacement="floating" helperText="Enter a valid pseudo" errorText="Invalid pseudo" [(ngModel)]="pseudo" name="pseudo" required text></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="email" fill="solid" label="Email" labelPlacement="floating" helperText="Enter a valid email" errorText="Invalid email" [(ngModel)]="email" name="email" required email></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" fill="solid" label="Mot de passe" labelPlacement="floating" helperText="Enter a valid password" errorText="Invalid password" [(ngModel)]="password" name="password" required password></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="date" fill="solid" label="Date de naissance" labelPlacement="floating" helperText="Enter a valid date" errorText="Invalid date" [(ngModel)]="date" name="date" date></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox [(ngModel)]="deck" name="deck">Deck visible</ion-checkbox>
       </ion-item>
     </ion-list>
-    <ion-button expand="full" type="submit" [disabled]="!registerForm.valid" >S'inscrire</ion-button>
+    <ion-button expand="full" type="submit" [disabled]="!registerForm.valid">S'inscrire</ion-button>
   </form>
 </ion-content>
+
+
