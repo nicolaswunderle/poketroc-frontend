@@ -9,20 +9,28 @@ export const routes: Routes = [
       canActivate: [onlyAuthenticated],
       children: [
         {
-          path: 'create-trip',
-          loadComponent: () => import('./layout/create-trip/create-trip.page').then(m => m.CreateTripPage)
+          path: 'home',
+          loadComponent: () => import('./layout/home/home.page').then(m => m.HomePage)
         },
         {
-          path: 'places-map',
-          loadComponent: () => import('./layout/places-map/places-map.page').then(m => m.PlacesMapPage)
+          path: 'deck',
+          loadComponent: () => import('./layout/deck/deck.page').then(m => m.DeckPage)
         },
         {
-          path: 'trip-list',
-          loadComponent: () => import('./layout/trip-list/trip-list.page').then(m => m.TripListPage)
+          path: 'ajouterCarte',
+          loadComponent: () => import('./layout/ajouter-carte/ajouter-carte.page').then(m => m.AjouterCartePage)
+        },
+        {
+          path: 'echanges',
+          loadComponent: () => import('./layout/echanges/echanges.page').then(m => m.EchangesPage)
+        },
+        {
+          path: 'profil',
+          loadComponent: () => import('./layout/profil/profil.page').then(m => m.ProfilPage)
         },
         {
           path: '',
-          redirectTo: 'trip-list',
+          redirectTo: 'home',
           pathMatch: 'full'
         },
       ]
@@ -31,4 +39,6 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./security/login/login.page').then( m => m.LoginPage)
   },
+ 
+
 ];
