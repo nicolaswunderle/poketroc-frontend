@@ -7,8 +7,6 @@ import { AuthRequest } from "./auth-request.model";
 import { Storage } from "@ionic/storage-angular";
 import { environment } from "src/environments/environment";
 
-const API_URL = "https://poketroc.onrender.com/api";
-
 /**
  * Authentication service for login/logout.
  */

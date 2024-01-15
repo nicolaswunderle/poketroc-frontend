@@ -21,6 +21,10 @@ export const routes: Routes = [
           loadComponent: () => import('./layout/trip-list/trip-list.page').then(m => m.TripListPage)
         },
         {
+          path: 'deck',
+          loadComponent: () => import('./layout/deck/deck.page').then( m => m.DeckPage)
+        },
+        {
           path: '',
           redirectTo: 'trip-list',
           pathMatch: 'full'
