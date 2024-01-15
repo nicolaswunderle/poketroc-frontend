@@ -33,6 +33,10 @@ export const routes: Routes = [
           loadComponent: () => import('./layout/deck/deck.page').then( m => m.DeckPage)
         },
         {
+          path: 'message',
+          loadComponent: () => import('./layout/message/message.page').then(m => m.MessagePage)
+        },
+        {
           path: '',
           redirectTo: 'home',
           pathMatch: 'full'
@@ -43,6 +47,8 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./security/login/login.page').then( m => m.LoginPage)
   },
- 
-
+  {
+    path: '',
+    loadComponent: () => import('./security/register/register.page').then( m => m.RegisterPage)
+  },
 ];
