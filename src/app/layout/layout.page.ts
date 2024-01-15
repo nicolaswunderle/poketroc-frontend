@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
-import { add, map, list } from "ionicons/icons";
 import { SharedModule } from 'src/app/shared-module';
 // import { 
 //   IonHeader,
 //   IonToolbar,
 //   IonTitle 
 // } from "@ionic/angular/standalone";
+import { home, book, add, people, person } from "ionicons/icons";
 
 // Custom type that represent a tab data.
 declare type PageTab = {
@@ -31,9 +31,14 @@ export class LayoutPage {
 
   constructor() {
     this.tabs = [
-      { title: "New Trip", icon: add, path: "create-trip" },
-      { title: "Places Map", icon: map, path: "places-map" },
-      { title: "Trip List", icon: list, path: "trip-list" },
+      //{ title: "Home", icon: home, path: "create-trip" },
+      //{ title: "Deck", icon: book, path: "places-map" },
+  { title: "Home", icon: home, path: "home" },
+      { title: "Deck", icon: book, path: "deck" },
+{ title: "Ajouter Carte", icon: add, path: "ajouterCarte" },
+      //{ title: "Ajouter Carte", icon: add, path: "trip-list" },
+      {title : "Echanges", icon: people, path: "echanges"},
+      {title : "Profil", icon: person, path: "profil"}
     ];
   }
 }
