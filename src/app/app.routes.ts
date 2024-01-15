@@ -33,6 +33,10 @@ export const routes: Routes = [
           loadComponent: () => import('./layout/deck/deck.page').then( m => m.DeckPage)
         },
         {
+          path: 'message',
+          loadComponent: () => import('./layout/message/message.page').then(m => m.MessagePage)
+        },
+        {
           path: '',
           redirectTo: 'home',
           pathMatch: 'full'
