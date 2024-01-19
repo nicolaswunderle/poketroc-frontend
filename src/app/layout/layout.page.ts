@@ -5,7 +5,7 @@ import { SharedModule } from 'src/app/shared-module';
 //   IonToolbar,
 //   IonTitle 
 // } from "@ionic/angular/standalone";
-import { home, book, add, people, person, chatbubbles } from "ionicons/icons";
+import { home, book, add, people, person, chatbubbles} from "ionicons/icons";
 
 // Custom type that represent a tab data.
 declare type PageTab = {
@@ -28,7 +28,6 @@ declare type PageTab = {
 })
 export class LayoutPage {
   tabs: PageTab[];
-
   constructor() {
     this.tabs = [
   { title: "Home", icon: home, path: "home" },
@@ -37,6 +36,7 @@ export class LayoutPage {
       {title : "Echanges", icon: people, path: "echanges"},
       {title : "Profil", icon: person, path: "profil"},
       {title : "Message", icon: chatbubbles, path: "message"},
+      
     ];
   }
 }
