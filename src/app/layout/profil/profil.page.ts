@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import {addIcons} from 'ionicons';
+import { pencil } from 'ionicons/icons';
 
 
 @Component({
@@ -13,7 +15,11 @@ import { IonicModule } from '@ionic/angular';
 })
 export class ProfilPage implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    addIcons({
+      pencil: pencil
+    })
+  }
 
   ngOnInit() {
   }
