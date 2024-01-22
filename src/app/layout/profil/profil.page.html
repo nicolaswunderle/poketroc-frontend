@@ -9,5 +9,42 @@
     <ion-toolbar>
       <ion-title size="large">Profil</ion-title>
     </ion-toolbar>
+    
   </ion-header>
+  <ion-item>
+    <ion-avatar slot="start">
+      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    </ion-avatar>
+    <ion-button  color="medium"> <ion-icon name="pencil" class="pencil-icon"></ion-icon></ion-button>
+    <ion-label>Profil</ion-label>
+  </ion-item>
+  
+  <ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-input label="Pierre" ></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-input label="Durand" type="number" ></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-input label="pierre22" type="string" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="22.03.2001" type="date" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="*********" type="password" value="password"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-input label="pierre22@gmail.com" type="email" placeholder="email@gmail.com"></ion-input>
+      </ion-item>
+  
+    </ion-list>
+  </ion-list>
 </ion-content>
