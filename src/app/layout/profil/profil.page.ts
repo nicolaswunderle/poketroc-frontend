@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import {addIcons} from 'ionicons';
+//importer icones sur notre page hors footer
 import { pencil } from 'ionicons/icons';
 
 
