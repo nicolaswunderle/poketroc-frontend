@@ -19,7 +19,9 @@ import { AuthService } from 'src/app/security/auth.service';
   // imports: [SharedModule, IonList, IonItem, IonThumbnail, IonLabel]
 })
 export class DeckPage implements OnInit {
-  cards: any[] = [];
+  cardsColl: any[] = [];
+  cardsWant: any[] = [];
+  segmentOption = true;
 
   constructor(private authService: AuthService, private readonly http: HttpClient) {
     this.getCards();
@@ -38,7 +40,7 @@ export class DeckPage implements OnInit {
         this.http.get(url, {headers}).subscribe(
           (res: any) => {
             res.forEach((e: any) => {
-              this.cards.push(e);
+              this.cardsColl.push(e);
             });
           },
           (error) => {
@@ -48,7 +50,7 @@ export class DeckPage implements OnInit {
         this.http.get(url2, {headers}).subscribe(
           (res: any) => {
             res.forEach((e: any) => {
-              this.cards.push(e);
+              this.cardsWant.push(e);
             });
           },
           (error) => {
@@ -64,8 +66,12 @@ export class DeckPage implements OnInit {
 
   }
 
-  logOut(){
-    this.authService.logOut();
+  segmentChanged(ev: any) {
+    if (ev.detail.value === 'collected') {
+      this.segmentOption = true;
+    } else {
+      this.segmentOption = false;
+    }
   }
 
   ngOnInit() {
