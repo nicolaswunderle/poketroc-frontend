@@ -3,12 +3,8 @@ import { SharedModule } from 'src/app/shared-module';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/app/security/auth.service';
+import { Router } from '@angular/router';
 // import { IonList, IonItem, IonThumbnail, IonLabel } from "@ionic/angular/standalone";
-
-//declare type PageCard = {
-//  statut: string;
-//  quantite: number;
-//}
 
 @Component({
   selector: 'app-deck',
@@ -23,7 +19,7 @@ export class DeckPage implements OnInit {
   cardsWant: any[] = [];
   segmentOption = true;
 
-  constructor(private authService: AuthService, private readonly http: HttpClient) {
+  constructor(private authService: AuthService, private readonly http: HttpClient, private router: Router) {
     this.getCards();
   }
 
@@ -63,7 +59,6 @@ export class DeckPage implements OnInit {
         console.error('Erreur lors de la récupération du token d\'accès:', authError);
       }
     );
-
   }
 
   segmentChanged(ev: any) {
@@ -72,6 +67,10 @@ export class DeckPage implements OnInit {
     } else {
       this.segmentOption = false;
     }
+  }
+
+  changePage(cardId: any){
+    this.router.navigate(['/cartes', cardId]);
   }
 
   ngOnInit() {
