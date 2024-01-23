@@ -33,6 +33,14 @@ export const routes: Routes = [
           loadComponent: () => import('./layout/message/message.page').then(m => m.MessagePage)
         },
         {
+          path: 'echangeDetails',
+          loadComponent: () => import('./layout/echange-details/echange-details.page').then( m => m.EchangeDetailsPage)
+        },
+        {
+          path: 'messageUtilisateur',
+          loadComponent: () => import('./layout/message-utilisateur/message-utilisateur.page').then( m => m.MessageUtilisateurPage)
+        },
+        {
           path: '',
           redirectTo: 'home',
           pathMatch: 'full'
@@ -53,3 +61,4 @@ export const routes: Routes = [
   },
 
 ];
+
