@@ -1,10 +1,9 @@
-/* Ajoutez ces styles à votre fichier de style (par exemple, layout.page.scss) */
-.custom-align {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .custom-button {
-    margin-left: 150px;
-  }
+/* styles.scss (ou tout autre nom que vous utilisez) */
+
+.custom-confirm-button {
+  margin-left: auto;
+}
+
+.custom-delete-button {
+  margin-left: auto;
+}

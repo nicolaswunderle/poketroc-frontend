@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-echanges',
@@ -15,10 +16,14 @@ export class EchangesPage implements OnInit {
   cardId: any;
   //concerne la création des onglets
   segmentModel: string = "attente";
-  constructor(private route: ActivatedRoute) { }
+  
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.cardId = this.route.snapshot.params['cardId'];
   }
-
+  goToAnotherPage() {
+    // Remplacez 'chemin-de-votre-page' par le chemin réel de la page vers laquelle vous souhaitez naviguer.
+    this.router.navigate(['/echangeDetails']);
+  }
 }
