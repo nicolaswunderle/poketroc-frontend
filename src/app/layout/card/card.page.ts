@@ -38,8 +38,44 @@ export class CardPage implements OnInit {
     })
   }
 
-  changePage(cardId: any){
+  goToEchangePage(cardId: any){
     this.router.navigate(['/echanges', cardId]);
+  }
+
+  goToPatchPage(cardId: any){
+    this.router.navigate(['/cartes/modifier', cardId]);
+  }
+
+  public alertButtons = [
+    {
+      text: 'Annuler',
+      role: 'cancel',
+      handler: () => {
+        console.log('Suppression annulé');
+      },
+    },
+    {
+      text: 'Supprimer',
+      role: 'delete',
+      handler: () => {
+        console.log('Carte supprimé');
+        this.authService.getToken$().subscribe((token) => {
+          const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`
+          });
+          const url = environment.apiUrl + `/cartes/${this.cardId}`;
+          this.http.delete(url, {headers})
+          .subscribe(() => console.log('Delete successful'));
+        });
+        this.router.navigate(['/deck']).then(() => {
+          window.location.reload();
+        })
+      },
+    },
+  ];
+
+  setResult(ev: any){
+    console.log(`Dismissed with role: ${ev.detail.role}`)
   }
 
   ngOnInit() {

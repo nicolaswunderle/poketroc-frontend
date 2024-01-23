@@ -41,7 +41,10 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <ion-button (click)="changePage(card._id)" expand="block" >Échanger la carte</ion-button>
+      <ion-button (click)="goToEchangePage(card._id)" expand="block" color="primary" >Échanger la carte</ion-button>
+      <ion-button (click)="goToPatchPage(card._id)" expand="block" color="primary" >Modifier la carte</ion-button>
+      <ion-button id="delete-alert" expand="block" color="danger" >Supprimer la carte</ion-button>
+      <ion-alert trigger="delete-alert" header="Voulez-vous supprimer cette carte?" [buttons]="alertButtons" ></ion-alert>
     </ion-card>
   </ion-grid>
 </ion-content>
