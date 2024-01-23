@@ -36,7 +36,7 @@
   <ion-grid *ngIf="cardsColl.length > 0 && segmentOption" [fixed]="true">
     <ion-row>
       <ion-col *ngFor="let card of cardsColl" size="3">
-        <ion-card (click)="changePage(card._id)">
+        <ion-card (click)="goToCardPage(card._id)">
           <img alt="Silhouette of mountains" height="300" src="https://ionicframework.com/docs/img/demos/card-media.png" />
           <ion-card-header>
             <ion-card-title>Num: {{ card.id_api }}</ion-card-title>
@@ -49,7 +49,7 @@
   <ion-grid *ngIf="cardsWant.length > 0 && !segmentOption" [fixed]="true">
     <ion-row>
       <ion-col *ngFor="let card of cardsWant" size="3">
-        <ion-card>
+        <ion-card (click)="goToCardPage(card._id)">
           <img alt="Silhouette of mountains" height="300" src="https://ionicframework.com/docs/img/demos/card-media.png" />
           <ion-card-header>
             <ion-card-title>Num: {{ card.id_api }}</ion-card-title>
@@ -59,7 +59,14 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-card *ngIf="cardsColl.length < 0" color="danger">
-    <ion-card-content>Vous ne pocédez pas de cartes dans votre deck pour l'instant.</ion-card-content>
-  </ion-card>
+  <ion-grid *ngIf="!cardsColl.length && segmentOption" [fixed]="true">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="8">
+        <ion-card color="warning">
+          <ion-card-content><h2>Vous ne pocédez pas de cartes dans votre deck pour l'instant.</h2></ion-card-content>
+          <ion-button (click)="goToAddCardPage()" color="warning">Ajouter une carte</ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

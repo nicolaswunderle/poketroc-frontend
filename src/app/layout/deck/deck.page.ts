@@ -69,8 +69,12 @@ export class DeckPage implements OnInit {
     }
   }
 
-  changePage(cardId: any){
+  goToCardPage(cardId: any){
     this.router.navigate(['/cartes', cardId]);
+  }
+
+  goToAddCardPage(){
+    this.router.navigate(['/ajouterCarte']);
   }
 
   ngOnInit() {

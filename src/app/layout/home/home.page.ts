@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Geolocation, PositionOptions, WatchPositionCallback } from '@capacitor/geolocation';
+import { CallbackID, Geolocation, PositionOptions, WatchPositionCallback } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-home',
