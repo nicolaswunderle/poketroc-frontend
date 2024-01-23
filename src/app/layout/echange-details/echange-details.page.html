@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Echanges</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="segmentModel" value="Moi">
+      <ion-segment-button value="moi">
+        <ion-label>Mes cartes</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="">
+        <ion-label>Les cartes de NomDuDresseur </ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Echanges</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>LeDresseur souhaite échanger avec vous</ion-card-title>
+    </ion-card-header>
+    </ion-card>
+    <ion-card>
+      <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+   
+       
+      <ion-card-header>
+        <ion-button color="medium">  <ion-icon  name="caret-back" ></ion-icon> </ion-button>
+        <ion-button color="medium"> <ion-icon  name="caret-forward" ></ion-icon> </ion-button>
+      </ion-card-header>
+      <ion-card-content>
+        Quantité : 2
+      </ion-card-content>
+      <ion-card-content>
+        Etat carte : neuf
+      </ion-card-content>
+      <ion-card-content>
+        Type : reverse
+      </ion-card-content>
+      
+    </ion-card>
+      <ion-button class="custom-confirm-button"color="primary">Confirmer</ion-button>
+      <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
+      <ion-button (click)="goToUserMessagePage()" class="custom-discuter-button"color="medium">Discuter</ion-button>
+      
+</ion-content>
