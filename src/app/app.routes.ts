@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { onlyAuthenticated } from "./security/only-authenticated.guard";
 import { CardPage } from './layout/card/card.page';
 import { EchangesPage } from './layout/echanges/echanges.page';
+import { CardPatchPage } from './layout/card/card-patch/card-patch.page';
 
 export const routes: Routes = [
   {
@@ -51,6 +52,9 @@ export const routes: Routes = [
           path: 'cartes/:cardId', component: CardPage,
         },
         {
+          path: 'cartes/modifier/:cardId', component: CardPatchPage,
+        },
+        {
           path: 'echanges/:cardId', component: EchangesPage,
         },
       ]
@@ -63,7 +67,5 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./security/register/register.page').then( m => m.RegisterPage)
   },
-
-
 ];
 
