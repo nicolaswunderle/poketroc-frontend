@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/security/auth.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-card-patch',
@@ -14,8 +17,14 @@ import { Router } from '@angular/router';
 })
 export class CardPatchPage implements OnInit {
   cardId: any;
+  card: any;
+  etat: string = '';
+  description: string = '';
+  type: string = '';
+  statut: string = '';
+  quantity: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private http: HttpClient) { }
 
   public alertButtons = [
     {
@@ -37,8 +46,27 @@ export class CardPatchPage implements OnInit {
     },
   ];
 
+  getCardDatas(){
+    console.log(this.etat);
+    const url = environment.apiUrl + `/cartes/${this.cardId}`;
+    this.authService.getToken$().subscribe((token) => {
+      const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
+      this.http.get(url, {headers}).subscribe((res:any) => {
+        this.card = res;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des cartes:', error);
+      });
+    });
+  }
+
+  patchCardDatas(){
+
+  }
+
   ngOnInit() {
     this.cardId = this.route.snapshot.params['cardId'];
+    this.getCardDatas();
   }
 
 }
