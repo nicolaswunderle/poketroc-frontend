@@ -48,6 +48,7 @@ export class CardPage implements OnInit {
     });
     this.http.get(url, {headers}).subscribe((res: any) => {
       this.cardDatas = res.data;
+      console.log(this.cardDatas);
     })
   }
 
