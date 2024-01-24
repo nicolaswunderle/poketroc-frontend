@@ -15,15 +15,20 @@ import { Router } from '@angular/router';
 export class EchangesPage implements OnInit {
   cardId: any;
   //concerne la création des onglets
-  segmentModel: string = "attente";
-  
+  segmentOption = true;
+
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.cardId = this.route.snapshot.params['cardId'];
+  
   }
   goToAnotherPage() {
-    // Remplacez 'chemin-de-votre-page' par le chemin réel de la page vers laquelle vous souhaitez naviguer.
+    
     this.router.navigate(['/echangeDetails']);
   }
+
+
+  
+  
 }

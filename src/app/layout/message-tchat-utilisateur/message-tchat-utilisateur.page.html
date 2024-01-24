@@ -11,8 +11,8 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-   <ion-button (click)="goToEchangeDetailsPage()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
-    <p>LeDresseur</p>
+   <ion-button><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+    <p>sacha245</p>
   <ion-list lines="none" class="chat-container">
   <ion-item *ngFor="let message of messages" [class]="message.sender === 'user' ? 'user-message' : 'other-message'">
     <ion-avatar *ngIf="message.sender !== 'user'">
