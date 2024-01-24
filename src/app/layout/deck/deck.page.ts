@@ -62,8 +62,6 @@ export class DeckPage implements OnInit {
         console.error('Erreur lors de la récupération du token d\'accès:', authError);
       }
     );
-    console.log(this.datasCardsPokColl);
-    console.log(this.cardsColl)
   }
 
   getPokemonDatas(card: any){
