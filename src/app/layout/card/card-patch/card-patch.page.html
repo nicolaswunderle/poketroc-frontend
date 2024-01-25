@@ -11,9 +11,9 @@
     </ion-toolbar>
   </ion-header>
   <ion-grid [fixed]="true">
-    <ion-card>
+    <ion-card *ngIf="card">
       <ion-card-header>
-        <ion-card-title><h1></h1></ion-card-title>
+        <ion-card-title><h1>{{card.id_api}}</h1></ion-card-title>
       </ion-card-header>
       <ion-grid>
         <ion-row>
@@ -23,19 +23,60 @@
           <ion-col>
             <ion-list lines="none">
               <ion-item>
-                <ion-label><ion-text color="medium">État: </ion-text></ion-label>
+                <ion-label><ion-text color="medium">État:</ion-text>
+                  <ion-input
+                    label=""
+                    labelPlacement="stacked"
+                    [clearInput]="true"
+                    placeholder="Enter text to see clear button"
+                    value="{{card.etat}}"
+                    name="etat"
+                  >
+                  </ion-input>
+                </ion-label>
               </ion-item>
               <ion-item>
-                <ion-label><ion-text color="medium">Description: </ion-text></ion-label>
+                <ion-label><ion-text color="medium">Description:</ion-text>
+                  <ion-input
+                    label=""
+                    labelPlacement="stacked"
+                    [clearInput]="true"
+                    placeholder="Enter text to see clear button"
+                    value="{{card.desc_etat}}"
+                    name="description"
+                  >
+                  </ion-input>
+                </ion-label>
               </ion-item>
               <ion-item>
-                <ion-label><ion-text color="medium">Type: </ion-text></ion-label>
+                <ion-label><ion-text color="medium">Type: {{card.type}}</ion-text>
+                  <ion-select label="" value="{{card.type}}" label-placement="floating" fill="solid" name="type">
+                    <ion-select-option value="holo">Holo</ion-select-option>
+                    <ion-select-option value="reverse">Reverse</ion-select-option>
+                    <ion-select-option value="normal">Normal</ion-select-option>
+                  </ion-select>
+                </ion-label>
               </ion-item>
               <ion-item>
-                <ion-label><ion-text color="medium">Statut: </ion-text></ion-label>
+                <ion-label><ion-text color="medium">Statut:</ion-text>
+                  <ion-select label="" value="{{card.statut}}" label-placement="floating" fill="solid" name="statut">
+                    <ion-select-option value="collectee">Collectée</ion-select-option>
+                    <ion-select-option value="souhaitee">Souhaitée</ion-select-option>
+                  </ion-select>
+                </ion-label>
               </ion-item>
               <ion-item>
-                <ion-label><ion-text color="medium">Quantitée: </ion-text></ion-label>
+                <ion-label><ion-text color="medium">Quantitée:</ion-text>
+                  <ion-input
+                    label=""
+                    labelPlacement="stacked"
+                    [clearInput]="true"
+                    placeholder="Enter text to see clear button"
+                    value="{{card.quantite}}"
+                    name="quantity"
+                  >
+                  </ion-input>
+                </ion-label>
               </ion-item>
             </ion-list>
           </ion-col>

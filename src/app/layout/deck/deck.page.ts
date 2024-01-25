@@ -17,6 +17,8 @@ import { Router } from '@angular/router';
 export class DeckPage implements OnInit {
   cardsColl: any[] = [];
   cardsWant: any[] = [];
+  datasCardsPokColl: any[] = [];
+  datasCardsPokWant: any[] = [];
   segmentOption = true;
 
   constructor(private authService: AuthService, private readonly http: HttpClient, private router: Router) {
@@ -37,6 +39,7 @@ export class DeckPage implements OnInit {
           (res: any) => {
             res.forEach((e: any) => {
               this.cardsColl.push(e);
+              this.getPokemonDatas(e);
             });
           },
           (error) => {
@@ -47,6 +50,7 @@ export class DeckPage implements OnInit {
           (res: any) => {
             res.forEach((e: any) => {
               this.cardsWant.push(e);
+              this.getPokemonDatas(e);
             });
           },
           (error) => {
@@ -54,11 +58,30 @@ export class DeckPage implements OnInit {
           }
         );
       },
-
       (authError) => {
         console.error('Erreur lors de la récupération du token d\'accès:', authError);
       }
     );
+    console.log(this.datasCardsPokColl);
+    console.log(this.cardsColl)
+  }
+
+  getPokemonDatas(card: any){
+    const url = environment.apiPokemonTCGUrl + `/cards/${card.id_api}`;
+    const token = environment.tokenPokemonTCG;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    this.http.get(url, {headers}).subscribe((res: any) => {
+      if(card.statut === 'collectee'){
+        this.datasCardsPokColl.push(res.data);
+      }else{
+        this.datasCardsPokWant.push(res.data);
+      }
+    },
+    (error) => {
+      console.error('Erreur lors de la récupération des cartes:', error);
+    })
   }
 
   segmentChanged(ev: any) {
