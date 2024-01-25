@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CallbackID, Geolocation, PositionOptions, WatchPositionCallback } from '@capacitor/geolocation';
-
+import { MapComponent } from './map/map.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, MapComponent]
 })
 export class HomePage implements OnInit {
   choix: string = 'cartesCochees';
@@ -19,6 +19,7 @@ export class HomePage implements OnInit {
 
     constructor() { }
 
+    // géolocaliser l'utilisateur
     printCurrentPosition = async () => {
       const coordinates = await Geolocation.getCurrentPosition(); 
       console.log('Current position:', coordinates);
