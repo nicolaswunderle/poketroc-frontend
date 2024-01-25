@@ -15,24 +15,26 @@
   <ion-radio-group [(ngModel)]="choix" (ionChange)="onChoixChange()">
     <ion-radio value="cartesCochees" aria-label="Custom checkbox"></ion-radio>
     <ion-label>Cartes</ion-label>
-    <ion-radio value="nonCocher" aria-label="Custom checkbox" ></ion-radio> <!--Dresseurs = map-->
+    <ion-radio value="mapDresseur" aria-label="Custom checkbox" ></ion-radio> <!--Dresseurs = map-->
    <ion-label>Dresseurs</ion-label> 
   </ion-radio-group>
 
   <br>
-  <!--Ces boutons s'affichent seulement quand on est sur cartesPkm ------------------------------------------------------------------------------------------------->
+  <!--Ces boutons s'affichent seulement quand on est sur cartesPkm -->
   <ion-radio-group *ngIf="choix === 'cartesCochees'" [(ngModel)]="choixCartes"> <!--si cartes est sélectionné, nouveauté et pertinence apparaissent-->
     <ion-radio value="cartesNouveautes" aria-label="Custom checkbox"></ion-radio>
     <ion-label>Nouveauté&nbsp;</ion-label>
     <ion-radio value="pertinence" aria-label="Custom checkbox that is checked"></ion-radio>
     <ion-label>Pertinence</ion-label>
   </ion-radio-group>
-
-  <ion-button (click)="printCurrentPosition()">Afficher Position</ion-button>
-  <ion-button (click)="watchPosition()">Watch Position</ion-button>
-  <ion-content>
-    <div #map id="map"></div>
+  
+ <!-- Affiche map quand dresseur est sélectionné-->
+  <ion-content *ngIf="choix === 'mapDresseur'">
+    <app-map></app-map>
   </ion-content>
+   <!-- <ion-content id="ol-map" class="map-container"></ion-content> -->
+
+<ion-content *ngIf="choix === 'cartesCochees'">
   <ion-card>
     <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
     <ion-card-content>
@@ -53,6 +55,7 @@
       J'aime trop Pokémon yeaaahh. 
     </ion-card-content>
   </ion-card>
+
   <ion-card>
     <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
     <ion-card-content>
@@ -68,9 +71,10 @@
       <ion-button color="primary">Echanger</ion-button>
       <ion-card-title>Ondine</ion-card-title>
     </ion-card-header>
-  
     <ion-card-content>
      Attrapez les tous !
     </ion-card-content>
   </ion-card>
+</ion-content>
+
 </ion-content>
