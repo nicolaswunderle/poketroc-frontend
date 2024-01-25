@@ -43,7 +43,10 @@ export class AjouterCartePage implements OnInit {
   }
 
   goToNewCardPage(cardId: any){
-    this.router.navigate(['/ajouterCarte', cardId]);
+    this.router.navigate(['/ajouterCarte', cardId]).then(() => {
+      window.location.reload();
+    });
+
   }
 
   ngOnInit() {
