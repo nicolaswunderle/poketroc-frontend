@@ -3,10 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CallbackID, Geolocation, PositionOptions, WatchPositionCallback } from '@capacitor/geolocation';
-<<<<<<< HEAD
 import { MapComponent } from './map/map.component';
-=======
->>>>>>> origin/main
 
 @Component({
   selector: 'app-home',
