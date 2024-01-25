@@ -44,6 +44,14 @@ export const routes: Routes = [
           loadComponent: () => import('./layout/message-utilisateur/message-utilisateur.page').then( m => m.MessageUtilisateurPage)
         },
         {
+          path: 'messageTchatUtilisateur',
+          loadComponent: () => import('./layout/message-tchat-utilisateur/message-tchat-utilisateur.page').then( m => m.MessageTchatUtilisateurPage)
+        },
+        {
+          path: 'message-ecrire',
+          loadComponent: () => import('./layout/message-ecrire/message-ecrire.page').then( m => m.MessageEcrirePage)
+        },
+        {
           path: '',
           redirectTo: 'home',
           pathMatch: 'full'
@@ -67,5 +75,7 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./security/register/register.page').then( m => m.RegisterPage)
   },
+ 
+
 ];
 
