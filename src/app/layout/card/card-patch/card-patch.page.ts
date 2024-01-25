@@ -18,10 +18,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class CardPatchPage implements OnInit {
   cardId: any;
   card: any;
+  cardDatas: any;
   etat: string = '';
   description: string = '';
   type: string = '';
-  statut: string = '';
   quantity: string = '';
 
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private http: HttpClient) { }
@@ -39,6 +39,7 @@ export class CardPatchPage implements OnInit {
       role: 'edit',
       handler: () => {
         console.log('Carte modifié');
+        this.patchCardDatas();
         this.router.navigate([`/cartes/${this.cardId}`]).then(() => {
           window.location.reload();
         })
@@ -47,12 +48,16 @@ export class CardPatchPage implements OnInit {
   ];
 
   getCardDatas(){
-    console.log(this.etat);
     const url = environment.apiUrl + `/cartes/${this.cardId}`;
     this.authService.getToken$().subscribe((token) => {
       const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
       this.http.get(url, {headers}).subscribe((res:any) => {
         this.card = res;
+        this.getPokemonDatas(res);
+        this.etat = res.etat;
+        this.description = res.desc_etat;
+        this.type = res.type;
+        this.quantity = res.quantite;
       },
       (error) => {
         console.error('Erreur lors de la récupération des cartes:', error);
@@ -60,8 +65,32 @@ export class CardPatchPage implements OnInit {
     });
   }
 
-  patchCardDatas(){
+  getPokemonDatas(card: any){
+    const url = environment.apiPokemonTCGUrl + `/cards/${card.id_api}`;
+    const token = environment.tokenPokemonTCG;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    this.http.get(url, {headers}).subscribe((res: any) => {
+      this.cardDatas = res.data;
+    })
+  }
 
+  patchCardDatas(){
+    const updatedCardData = {
+      etat: this.etat,
+      desc_etat: this.description,
+      type: this.type,
+      quantite: this.quantity,
+    };
+    const url = environment.apiUrl + `/cartes/${this.cardId}`;
+    this.authService.getToken$().subscribe((token) => {
+      const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
+      this.http.patch(url, updatedCardData,{headers}).subscribe((res) => {},
+      (error) => {
+        console.error('Erreur lors de la récupération des cartes:', error);
+      });
+    });
   }
 
   ngOnInit() {

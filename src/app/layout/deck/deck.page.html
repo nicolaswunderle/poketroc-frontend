@@ -40,7 +40,7 @@
             <ion-card (click)="goToCardPage(card._id)">
               <img alt="Silhouette of mountains" src="{{cardPokColl.images.large}}" />
               <ion-card-header>
-                <ion-card-subtitle>Num: {{ card.id_api }}</ion-card-subtitle>
+                <ion-card-subtitle>Type: {{ card.type }}</ion-card-subtitle>
                 <ion-card-title>{{cardPokColl.name}}</ion-card-title>
                 <ion-card-subtitle class="ion-text-end">Qté: {{card.quantite}}</ion-card-subtitle>
               </ion-card-header>
@@ -58,7 +58,7 @@
             <ion-card (click)="goToCardPage(card._id)">
               <img alt="Silhouette of mountains" src="{{cardPokWant.images.large}}" />
               <ion-card-header>
-                <ion-card-subtitle>Num: {{ card.id_api }}</ion-card-subtitle>
+                <ion-card-subtitle>Type: {{ card.type }}</ion-card-subtitle>
                 <ion-card-title>{{cardPokWant.name}}</ion-card-title>
                 <ion-card-subtitle class="ion-text-end">Qté: {{card.quantite}}</ion-card-subtitle>
               </ion-card-header>
