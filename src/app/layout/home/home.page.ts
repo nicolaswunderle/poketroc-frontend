@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CallbackID, Geolocation, PositionOptions, WatchPositionCallback } from '@capacitor/geolocation';
+<<<<<<< HEAD
 import { MapComponent } from './map/map.component';
+=======
+>>>>>>> origin/main
 
 @Component({
   selector: 'app-home',
@@ -21,12 +24,12 @@ export class HomePage implements OnInit {
 
     // géolocaliser l'utilisateur
     printCurrentPosition = async () => {
-      const coordinates = await Geolocation.getCurrentPosition(); 
+      const coordinates = await Geolocation.getCurrentPosition();
       console.log('Current position:', coordinates);
     };
-    
+
     watchPosition = () => {
-      const options: PositionOptions = {}; 
+      const options: PositionOptions = {};
       const callback: WatchPositionCallback = (position) => {
         console.log('Watched position:', position);
         // Faites quelque chose avec la position mise à jour ici
@@ -35,9 +38,9 @@ export class HomePage implements OnInit {
       setInterval(async() => {
         if (this.watchId !== undefined){
         // Geolocation.clearWatch({ id.this.watchId });
-        this.watchId = Geolocation.watchPosition(options, callback); 
+        this.watchId = Geolocation.watchPosition(options, callback);
       }
-    }, 30000); 
+    }, 30000);
     };
 
   ngOnInit() {

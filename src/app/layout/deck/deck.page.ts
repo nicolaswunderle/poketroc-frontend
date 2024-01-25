@@ -3,12 +3,8 @@ import { SharedModule } from 'src/app/shared-module';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/app/security/auth.service';
+import { Router } from '@angular/router';
 // import { IonList, IonItem, IonThumbnail, IonLabel } from "@ionic/angular/standalone";
-
-//declare type PageCard = {
-//  statut: string;
-//  quantite: number;
-//}
 
 @Component({
   selector: 'app-deck',
@@ -19,9 +15,13 @@ import { AuthService } from 'src/app/security/auth.service';
   // imports: [SharedModule, IonList, IonItem, IonThumbnail, IonLabel]
 })
 export class DeckPage implements OnInit {
-  cards: any[] = [];
+  cardsColl: any[] = [];
+  cardsWant: any[] = [];
+  datasCardsPokColl: any[] = [];
+  datasCardsPokWant: any[] = [];
+  segmentOption = true;
 
-  constructor(private authService: AuthService, private readonly http: HttpClient) {
+  constructor(private authService: AuthService, private readonly http: HttpClient, private router: Router) {
     this.getCards();
   }
 
@@ -38,7 +38,8 @@ export class DeckPage implements OnInit {
         this.http.get(url, {headers}).subscribe(
           (res: any) => {
             res.forEach((e: any) => {
-              this.cards.push(e);
+              this.cardsColl.push(e);
+              this.getPokemonDatas(e);
             });
           },
           (error) => {
@@ -48,7 +49,8 @@ export class DeckPage implements OnInit {
         this.http.get(url2, {headers}).subscribe(
           (res: any) => {
             res.forEach((e: any) => {
-              this.cards.push(e);
+              this.cardsWant.push(e);
+              this.getPokemonDatas(e);
             });
           },
           (error) => {
@@ -56,16 +58,46 @@ export class DeckPage implements OnInit {
           }
         );
       },
-
       (authError) => {
         console.error('Erreur lors de la récupération du token d\'accès:', authError);
       }
     );
-
+    console.log(this.datasCardsPokColl);
+    console.log(this.cardsColl)
   }
 
-  logOut(){
-    this.authService.logOut();
+  getPokemonDatas(card: any){
+    const url = environment.apiPokemonTCGUrl + `/cards/${card.id_api}`;
+    const token = environment.tokenPokemonTCG;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    this.http.get(url, {headers}).subscribe((res: any) => {
+      if(card.statut === 'collectee'){
+        this.datasCardsPokColl.push(res.data);
+      }else{
+        this.datasCardsPokWant.push(res.data);
+      }
+    },
+    (error) => {
+      console.error('Erreur lors de la récupération des cartes:', error);
+    })
+  }
+
+  segmentChanged(ev: any) {
+    if (ev.detail.value === 'collected') {
+      this.segmentOption = true;
+    } else {
+      this.segmentOption = false;
+    }
+  }
+
+  goToCardPage(cardId: any){
+    this.router.navigate(['/cartes', cardId]);
+  }
+
+  goToAddCardPage(){
+    this.router.navigate(['/ajouterCarte']);
   }
 
   ngOnInit() {
