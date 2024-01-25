@@ -7,13 +7,14 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+
   <ion-toolbar>
-    <ion-segment [(ngModel)]="segmentModel" value="Moi">
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="activeSegment">
       <ion-segment-button value="moi">
         <ion-label>Mes cartes</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="">
-        <ion-label>Les cartes de NomDuDresseur </ion-label>
+      <ion-segment-button value="pasMoi">
+        <ion-label>Les cartes de NomDuDresseur</ion-label>
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -26,18 +27,18 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card>
+  <ion-card *ngIf="activeSegment === 'moi'">
     <ion-card-header>
       <ion-card-title>LeDresseur souhaite échanger avec vous</ion-card-title>
     </ion-card-header>
-    </ion-card>
+
     <ion-card>
-      <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-   
-       
+      <ion-card-title>Mes cartes</ion-card-title>
+      <p>1/2</p>
+      <img alt="Silhouette of mountains" [src]="images[currentImageIndex]"  />
       <ion-card-header>
-        <ion-button color="medium">  <ion-icon  name="caret-back" ></ion-icon> </ion-button>
-        <ion-button color="medium"> <ion-icon  name="caret-forward" ></ion-icon> </ion-button>
+        <ion-button (click)="goToPreviousImage()"  color="medium">  <ion-icon  name="caret-back" ></ion-icon> </ion-button>
+        <ion-button (click)="goToNextImage()"color="medium"> <ion-icon  name="caret-forward" ></ion-icon> </ion-button>
       </ion-card-header>
       <ion-card-content>
         Quantité : 2
@@ -48,10 +49,34 @@
       <ion-card-content>
         Type : reverse
       </ion-card-content>
-      
     </ion-card>
-      <ion-button class="custom-confirm-button"color="primary">Confirmer</ion-button>
-      <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
-      <ion-button (click)="goToUserMessagePage()" class="custom-discuter-button"color="medium">Discuter</ion-button>
-      
+
+    <ion-button class="custom-confirm-button" color="primary">Confirmer</ion-button>
+    <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
+    <ion-button (click)="goToUserMessagePage()" class="custom-discuter-button" color="medium">Discuter</ion-button>
+  </ion-card>
+
+  <ion-card *ngIf="activeSegment === 'pasMoi'">
+    <ion-card-header>
+      <ion-card-title>LeDresseur souhaite échanger avec vous</ion-card-title>
+    </ion-card-header>
+
+    <ion-card>
+      <ion-card-title>Les cartes du NomDuDresseur</ion-card-title>
+          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" >
+      <ion-card-content>
+        Quantité : 1
+      </ion-card-content>
+      <ion-card-content>
+        Etat carte : bon état
+      </ion-card-content>
+      <ion-card-content>
+        Type : reverse
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button class="custom-confirm-button" color="primary">Confirmer</ion-button>
+    <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
+    <ion-button (click)="goToUserMessagePage()" class="custom-discuter-button" color="medium">Discuter</ion-button>
+  </ion-card>
 </ion-content>

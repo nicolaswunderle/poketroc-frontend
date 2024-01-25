@@ -7,17 +7,6 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-
-  <ion-toolbar>
-    <ion-segment [(ngModel)]="segmentModel" value="attente">
-      <ion-segment-button value="attente">
-        <ion-label>Attente</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="souhaits">
-        <ion-label>Souhaits</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -26,57 +15,58 @@
       <ion-title size="large">Echanges</ion-title>
     </ion-toolbar>
   </ion-header>
-  
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Voici vos échanges en attente</ion-card-title>
+
+    <ion-card>
+      <img alt="Silhouette of mountains" height="300" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+      <ion-card-header>
+        <ion-card-title>Voici vos échanges en attente</ion-card-title>
+      </ion-card-header>
+            <ion-label>Vous avez reçu une demande d'échange de la part de :</ion-label>
+          <ion-item>
+            <ion-thumbnail slot="start">
+          <ion-button color="medium" (click)="goToAnotherPage()">  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" /></ion-button> 
+            </ion-thumbnail>
+            <ion-label>LeDresseur</ion-label>
+            <ion-button class="custom-confirm-button" color="primary">Confirmer</ion-button>
+            <ion-button class="custom-delete-button"  color="danger">Supprimer</ion-button>
+          </ion-item>
+
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+            </ion-thumbnail>
+            <ion-label>sacha</ion-label>
+            <ion-button class="custom-confirm-button"color="primary">Confirmer</ion-button>
+            <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
+          </ion-item>
+
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+            </ion-thumbnail>
+            <ion-label>ondine</ion-label>
+            <ion-button  class="custom-confirm-button" color="primary">Confirmer</ion-button>
+            <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-thumbnail slot="start">
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+            </ion-thumbnail>
+            <ion-label>fanPokemon</ion-label>
+            <ion-button class="custom-confirm-button" color="primary">Confirmer</ion-button>
+            <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
+          </ion-item>
+          <ion-item>
+            Pokedresseur a accepté votre échange
+          </ion-item>
+          <ion-item>
+            TeamRocket a refusé votre échange
+          </ion-item>
       
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-thumbnail slot="start">
-         <ion-button color="medium" (click)="goToAnotherPage()">  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" /></ion-button> 
-          </ion-thumbnail>
-          <ion-label>LeDresseur</ion-label>
-          <ion-button class="custom-confirm-button" color="primary">Confirmer</ion-button>
-          <ion-button class="custom-delete-button"  color="danger">Supprimer</ion-button>
-        </ion-item>
+      
+    </ion-card>
 
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-          </ion-thumbnail>
-          <ion-label>sacha</ion-label>
-          <ion-button class="custom-confirm-button"color="primary">Confirmer</ion-button>
-          <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
-        </ion-item>
 
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-          </ion-thumbnail>
-          <ion-label>ondine</ion-label>
-          <ion-button  class="custom-confirm-button" color="primary">Confirmer</ion-button>
-          <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
-        </ion-item>
-
-        <ion-item lines="none">
-          <ion-thumbnail slot="start">
-            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-          </ion-thumbnail>
-          <ion-label>fanPokemon</ion-label>
-          <ion-button class="custom-confirm-button" color="primary">Confirmer</ion-button>
-          <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
-        </ion-item>
-        <ion-item>
-          Pokedresseur a accepté votre échange
-        </ion-item>
-        <ion-item>
-          TeamRocket a refusé votre échange
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
 </ion-content>
 
