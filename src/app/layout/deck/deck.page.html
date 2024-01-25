@@ -32,42 +32,54 @@
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
-  <div *ngIf="datasCardsPokColl">
-    <div *ngFor="let cardPokColl of datasCardsPokColl">
-      <ion-grid *ngIf="cardsColl.length > 0 && segmentOption" [fixed]="true">
+    <div *ngIf="cardsColl.length > 0 && segmentOption">
+      <ion-grid [fixed]="true">
         <ion-row>
-          <ion-col *ngFor="let card of cardsColl" size="3">
-            <ion-card (click)="goToCardPage(card._id)">
-              <img alt="Silhouette of mountains" src="{{cardPokColl.images.large}}" />
-              <ion-card-header>
-                <ion-card-subtitle>Type: {{ card.type }}</ion-card-subtitle>
-                <ion-card-title>{{cardPokColl.name}}</ion-card-title>
-                <ion-card-subtitle class="ion-text-end">Qté: {{card.quantite}}</ion-card-subtitle>
-              </ion-card-header>
-            </ion-card>
-          </ion-col>
+          <div *ngFor="let card of cardsColl">
+            <ion-col size="3">
+              <ion-card (click)="goToCardPage(card._id)">
+                <div *ngIf="datasCardsPokColl">
+                  <div *ngFor="let pokData of datasCardsPokColl">
+                    <div *ngIf="pokData.id === card.id_api">
+                      <img alt="Silhouette of mountains" src="{{pokData.images.small}}" />
+                      <ion-card-header>
+                        <ion-card-subtitle>Type: {{ card.type }}</ion-card-subtitle>
+                        <ion-card-content><h2 style="color: white;">{{pokData.name}}</h2></ion-card-content>
+                        <ion-card-subtitle class="ion-text-end">Qté: {{card.quantite}}</ion-card-subtitle>
+                      </ion-card-header>
+                    </div>
+                  </div>
+                </div>
+              </ion-card>
+            </ion-col>
+          </div>
         </ion-row>
       </ion-grid>
     </div>
-  </div>
-  <div *ngIf="datasCardsPokWant">
-    <div *ngFor="let cardPokWant of datasCardsPokWant">
-      <ion-grid *ngIf="cardsWant.length > 0 && !segmentOption" [fixed]="true">
+    <div *ngIf="cardsWant.length > 0 && !segmentOption">
+      <ion-grid [fixed]="true">
         <ion-row>
-          <ion-col *ngFor="let card of cardsWant" size="3">
-            <ion-card (click)="goToCardPage(card._id)">
-              <img alt="Silhouette of mountains" src="{{cardPokWant.images.large}}" />
-              <ion-card-header>
-                <ion-card-subtitle>Type: {{ card.type }}</ion-card-subtitle>
-                <ion-card-title>{{cardPokWant.name}}</ion-card-title>
-                <ion-card-subtitle class="ion-text-end">Qté: {{card.quantite}}</ion-card-subtitle>
-              </ion-card-header>
-            </ion-card>
-          </ion-col>
+          <div *ngFor="let card of cardsWant">
+            <ion-col size="3">
+              <ion-card (click)="goToCardPage(card._id)">
+                <div *ngIf="datasCardsPokWant">
+                  <div *ngFor="let pokData of datasCardsPokWant">
+                    <div *ngIf="pokData.id === card.id_api">
+                      <img alt="Silhouette of mountains" src="{{pokData.images.small}}" />
+                      <ion-card-header>
+                        <ion-card-subtitle>Type: {{ card.type }}</ion-card-subtitle>
+                        <ion-card-content><h2 style="color: white;">{{pokData.name}}</h2></ion-card-content>
+                        <ion-card-subtitle class="ion-text-end">Qté: {{card.quantite}}</ion-card-subtitle>
+                      </ion-card-header>
+                    </div>
+                  </div>
+                </div>
+              </ion-card>
+            </ion-col>
+          </div>
         </ion-row>
       </ion-grid>
     </div>
-  </div>
   <ion-grid *ngIf="!cardsColl.length && segmentOption" [fixed]="true">
     <ion-row class="ion-justify-content-center">
       <ion-col size="8">

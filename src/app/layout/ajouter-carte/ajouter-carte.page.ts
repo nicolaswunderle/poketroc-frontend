@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/security/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ajouter-carte',
@@ -15,9 +16,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AjouterCartePage implements OnInit {
   cardNb: string = '';
-  cardDatas: any;
+  cardId: any;
 
-  constructor(private authService: AuthService, private http: HttpClient) {}
+  constructor(private authService: AuthService, private http: HttpClient, private router: Router) {}
 
   getPokemonDatas(card: any){
     const url = environment.apiPokemonTCGUrl + `/cards/${card}`;
@@ -27,16 +28,28 @@ export class AjouterCartePage implements OnInit {
     });
     this.http.get(url, {headers}).subscribe((res: any) => {
       console.log(res.data)
-      this.cardDatas = res.data;
+      this.cardId = res.data.id;
+      if(this.cardId){
+        this.goToNewCardPage(this.cardId);
+      }
+    },
+    (error) => {
+      console.error('Erreur lors de la récupération des cartes:', error);
     })
   }
 
   submitCardNb(){
-    this.getPokemonDatas(this.cardNb)
+    this.getPokemonDatas(this.cardNb);
+  }
+
+  goToNewCardPage(cardId: any){
+    this.router.navigate(['/ajouterCarte', cardId]).then(() => {
+      window.location.reload();
+    });
 
   }
 
   ngOnInit() {
-  }
+    }
 
 }

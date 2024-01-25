@@ -26,18 +26,15 @@ export class CardPage implements OnInit {
   getCardDatas(){
     const url = environment.apiUrl + `/cartes/${this.cardId}`;
     this.authService.getToken$().subscribe((token) => {
-      const headers = new HttpHeaders({
-        'Authorization': `Bearer ${token}`
-      });
+      const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
       this.http.get(url, {headers}).subscribe((res: any) => {
         this.card = res;
         this.getPokemonDatas(res);
       },
       (error) => {
         console.error('Erreur lors de la récupération des cartes:', error);
-      }
-      )
-    })
+      });
+    });
   }
 
   getPokemonDatas(card: any){
@@ -57,7 +54,9 @@ export class CardPage implements OnInit {
   }
 
   goToPatchPage(cardId: any){
-    this.router.navigate(['/cartes/modifier', cardId]);
+    this.router.navigate(['/cartes/modifier', cardId]).then(() => {
+      window.location.reload();
+    });
   }
 
   public alertButtons = [
@@ -81,9 +80,7 @@ export class CardPage implements OnInit {
           this.http.delete(url, {headers})
           .subscribe(() => console.log('Delete successful'));
         });
-        this.router.navigate(['/deck']).then(() => {
-          window.location.reload();
-        })
+        this.router.navigate(['/deck']);
       },
     },
   ];

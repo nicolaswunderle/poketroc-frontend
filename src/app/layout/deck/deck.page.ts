@@ -91,7 +91,10 @@ export class DeckPage implements OnInit {
   }
 
   goToCardPage(cardId: any){
-    this.router.navigate(['/cartes', cardId]);
+    this.router.navigate(['/cartes', cardId]).then(() => {
+      window.location.reload();
+    });
+
   }
 
   goToAddCardPage(){

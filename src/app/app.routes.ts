@@ -3,6 +3,7 @@ import { onlyAuthenticated } from "./security/only-authenticated.guard";
 import { CardPage } from './layout/card/card.page';
 import { EchangesPage } from './layout/echanges/echanges.page';
 import { CardPatchPage } from './layout/card/card-patch/card-patch.page';
+import { CardPostPage } from './layout/card/card-post/card-post.page';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,9 @@ export const routes: Routes = [
         {
           path: 'ajouterCarte',
           loadComponent: () => import('./layout/ajouter-carte/ajouter-carte.page').then(m => m.AjouterCartePage)
+        },
+        {
+          path: 'ajouterCarte/:cardId', component: CardPostPage,
         },
         {
           path: 'echanges',
@@ -75,7 +79,6 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./security/register/register.page').then( m => m.RegisterPage)
   },
- 
 
 ];
 
