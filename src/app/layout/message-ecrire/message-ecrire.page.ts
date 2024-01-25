@@ -18,14 +18,12 @@ export class MessageEcrirePage implements OnInit {
       { sender: 'Pokedresseur', text: 'salut' },
     ];
   constructor(private router: Router) { }
-  selectConversation(userId: string) {
-    // Naviguer vers la page de confirmation avec l'ID de l'utilisateur sélectionné
-    this.router.navigate(['/confirmation', userId]);
-  }
+  
 
   ngOnInit() {
   }
-  goToMessagePage() {
-    this.router.navigate(['/message']);
+  
+  goToMessageUtlisateurPage(){
+    this.router.navigate(['/messageUtilisateur']);
   }
 }
