@@ -40,9 +40,9 @@ export class CardPatchPage implements OnInit {
       handler: () => {
         console.log('Carte modifié');
         this.patchCardDatas();
-        this.router.navigate([`/cartes/${this.cardId}`]).then(() => {
-          window.location.reload();
-        })
+        //this.router.navigate([`/cartes/${this.cardId}`]).then(() => {
+        //  window.location.reload();
+        //})
       },
     },
   ];
