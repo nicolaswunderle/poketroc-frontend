@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import {create} from 'ionicons/icons';
 import {addIcons} from 'ionicons';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ import {addIcons} from 'ionicons';
 })
 export class MessagePage implements OnInit {
  // createIcon = create;
-  constructor() { 
+  constructor(private router: Router) { 
     addIcons({
       create: create
     })
@@ -23,5 +24,7 @@ export class MessagePage implements OnInit {
 
   ngOnInit() {
   }
-
+  goToMessageEcrirePage(){
+    this.router.navigate(['/message-ecrire']);
+  }
 }
