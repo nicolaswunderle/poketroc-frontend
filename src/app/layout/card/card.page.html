@@ -9,43 +9,73 @@
       <ion-title size="large">Carte</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-grid [fixed]="true">
-    <ion-card *ngIf="card">
-      <ion-card-header>
-        <ion-card-title><h1>{{card.id_api}}</h1></ion-card-title>
-      </ion-card-header>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <img height="500" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-          </ion-col>
-          <ion-col>
-            <ion-list lines="none">
-              <ion-item>
-                <ion-label><ion-text color="medium">État: </ion-text>{{card.etat}}</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label><ion-text color="medium">Description: </ion-text>{{card.desc_etat}}</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label><ion-text color="medium">Type: </ion-text>{{card.type}}</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label><ion-text color="medium">Statut: </ion-text>{{card.statut}}</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label><ion-text color="medium">Quantitée: </ion-text>{{card.quantite}}</ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-button (click)="goToEchangePage(card._id)" expand="block" color="primary" >Échanger la carte</ion-button>
-      <ion-button (click)="goToPatchPage(card._id)" expand="block" color="primary" >Modifier la carte</ion-button>
-      <ion-button id="delete-alert" expand="block" color="danger" >Supprimer la carte</ion-button>
-      <ion-alert trigger="delete-alert" header="Voulez-vous supprimer cette carte?" [buttons]="alertButtons" ></ion-alert>
-    </ion-card>
-  </ion-grid>
+  <div *ngIf="cardDatas">
+    <ion-grid [fixed]="true">
+      <ion-card *ngIf="card">
+        <ion-card-header>
+          <ion-card-title><h1>{{cardDatas.name}}</h1></ion-card-title>
+        </ion-card-header>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <img alt="Silhouette of mountains" src="{{cardDatas.images.large}}" />
+            </ion-col>
+            <ion-col>
+              <ion-list>
+                <ion-item>
+                  <ion-label><ion-text color="medium">Pokémon de type: </ion-text></ion-label><ion-badge color="warning">{{cardDatas.types}}</ion-badge>
+                </ion-item>
+                <ion-item>
+                  <ion-label><ion-text color="medium">Série: </ion-text></ion-label><ion-badge color="medium">{{cardDatas.set.series}}</ion-badge>
+                </ion-item>
+                <ion-item>
+                  <ion-label><ion-text color="medium">Rareté: </ion-text></ion-label><ion-badge color="medium">{{cardDatas.rarity}}</ion-badge>
+                </ion-item>
+              </ion-list>
+              <ion-list lines="none">
+                <ion-item color="warning">
+                  <ion-text><h3>Ta carte</h3></ion-text>
+                </ion-item>
+                <ion-item>
+                  <ion-label><ion-text color="medium">État: </ion-text>{{card.etat}}</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label><ion-text color="medium">Description: </ion-text>{{card.desc_etat}}</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label><ion-text color="medium">Type: </ion-text>{{card.type}}</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label><ion-text color="medium">Statut: </ion-text>{{card.statut}}</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label><ion-text color="medium">Quantitée: </ion-text>{{card.quantite}}</ion-label>
+                </ion-item>
+              </ion-list>
+              <ion-button (click)="goToEchangePage(card._id)" expand="block" color="secondary" >Échanger ta carte</ion-button>
+              <ion-button (click)="goToPatchPage(card._id)" expand="block" color="secondary" >Modifier ta carte</ion-button>
+              <ion-button id="delete-alert" expand="block" color="danger" >Supprimer ta carte</ion-button>
+              <ion-alert trigger="delete-alert" header="Voulez-vous supprimer cette carte?" [buttons]="alertButtons" ></ion-alert>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-card>
+          <ion-card-header color="warning"><h3>Les attaques de {{cardDatas.name}}</h3></ion-card-header>
+          <ion-card-content>
+            <div *ngFor="let cardAtt of cardDatas.attacks">
+            <ion-grid>
+                <ion-row class="ion-text-center">
+                  <ion-col><ion-text color="warning">{{cardAtt.name}}</ion-text></ion-col>
+                  <ion-col>Damage: {{cardAtt.damage}}</ion-col>
+                  <ion-col>{{cardAtt.text}}</ion-col>
+                </ion-row>
+            </ion-grid>
+          </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-card>
+    </ion-grid>
+  </div>
 </ion-content>
 
 

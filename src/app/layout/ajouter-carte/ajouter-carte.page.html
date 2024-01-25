@@ -10,47 +10,16 @@
       <ion-title size="large">AjouterCarte</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-card>
-    <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-    <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>
-     Informations sur la carte
-    </ion-card-content>
-  </ion-card>
-  <ion-list>
-  
-    <ion-item>
-      <ion-select label="Etat" label-placement="fixed" placeholder="Etat de la carte">
-        <ion-select-option value="excellent">Excellent</ion-select-option>
-        <ion-select-option value="moyen">Moyen</ion-select-option>
-        <ion-select-option value="abîmé">Abimé</ion-select-option>
-      </ion-select>
-    </ion-item>
-  
-    <ion-item>
-      <ion-input label="Description de l'état" value="Bon état,.."></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-select label="Type" label-placement="fixed" placeholder="Type de la carte">
-        <ion-select-option value="excellent">Spécial</ion-select-option>
-        <ion-select-option value="moyen">Moyen</ion-select-option>
-        <ion-select-option value="abîmé">Edition limité</ion-select-option>
-      </ion-select>
-    </ion-item>
-  
-    <ion-item>
-      <ion-input label="Quantité" value="1" [disabled]="true"></ion-input>
-    </ion-item>
-    <ion-row class="ion-justify-content-end">
-      <ion-button color="danger">Annuler l'ajout</ion-button>
-      <ion-button color="primary">Confirmer l'ajout</ion-button>
+  <ion-grid [fixed]="true">
+    <ion-row>
+      <ion-col>
+        <h2>Entre le numéro de la carte que tu veux ajouter:</h2>
+        <a href="https://pokemontcg.guru/">Lien pour trouver numéro de carte</a>
+      </ion-col>
+      <ion-col>
+        <ion-input [(ngModel)]="cardNb" label="Numéro de carte" label-placement="floating" fill="solid" placeholder="Enter un numéro de carte"></ion-input>
+        <ion-button color="secondary" expand="block" (click)="submitCardNb()">Chercher</ion-button>
+      </ion-col>
     </ion-row>
-  </ion-list>
-  
-
+  </ion-grid>
 </ion-content>

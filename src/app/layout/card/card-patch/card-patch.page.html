@@ -10,80 +10,78 @@
       <ion-title size="large">Modifier votre carte</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-grid [fixed]="true">
-    <ion-card *ngIf="card">
-      <ion-card-header>
-        <ion-card-title><h1>{{card.id_api}}</h1></ion-card-title>
-      </ion-card-header>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <img height="500" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-          </ion-col>
-          <ion-col>
-            <ion-list lines="none">
-              <ion-item>
-                <ion-label><ion-text color="medium">État:</ion-text>
-                  <ion-input
-                    label=""
-                    labelPlacement="stacked"
-                    [clearInput]="true"
-                    placeholder="Enter text to see clear button"
-                    value="{{card.etat}}"
-                    name="etat"
-                  >
-                  </ion-input>
-                </ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label><ion-text color="medium">Description:</ion-text>
-                  <ion-input
-                    label=""
-                    labelPlacement="stacked"
-                    [clearInput]="true"
-                    placeholder="Enter text to see clear button"
-                    value="{{card.desc_etat}}"
-                    name="description"
-                  >
-                  </ion-input>
-                </ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label><ion-text color="medium">Type: {{card.type}}</ion-text>
-                  <ion-select label="" value="{{card.type}}" label-placement="floating" fill="solid" name="type">
-                    <ion-select-option value="holo">Holo</ion-select-option>
-                    <ion-select-option value="reverse">Reverse</ion-select-option>
-                    <ion-select-option value="normal">Normal</ion-select-option>
-                  </ion-select>
-                </ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label><ion-text color="medium">Statut:</ion-text>
-                  <ion-select label="" value="{{card.statut}}" label-placement="floating" fill="solid" name="statut">
-                    <ion-select-option value="collectee">Collectée</ion-select-option>
-                    <ion-select-option value="souhaitee">Souhaitée</ion-select-option>
-                  </ion-select>
-                </ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label><ion-text color="medium">Quantitée:</ion-text>
-                  <ion-input
-                    label=""
-                    labelPlacement="stacked"
-                    [clearInput]="true"
-                    placeholder="Enter text to see clear button"
-                    value="{{card.quantite}}"
-                    name="quantity"
-                  >
-                  </ion-input>
-                </ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-button id="delete-alert" expand="block" color="primary" >Modifier le carte</ion-button>
-      <ion-alert trigger="delete-alert" header="Voulez-vous modifier cette carte?" [buttons]="alertButtons" ></ion-alert>
-    </ion-card>
-  </ion-grid>
+  <div *ngIf="cardDatas">
+    <ion-grid [fixed]="true">
+      <ion-card *ngIf="card">
+        <ion-card-header>
+          <ion-card-title><h1>{{card.id_api}}</h1></ion-card-title>
+        </ion-card-header>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <img alt="Silhouette of mountains" src="{{cardDatas.images.large}}" />
+            </ion-col>
+            <ion-col>
+              <ion-list lines="none">
+                <ion-item>
+                  <ion-label><ion-text color="medium">État: </ion-text>
+                    <ion-select [(ngModel)]="etat" label="" value="{{card.etat}}" label-placement="floating" fill="solid" name="type">
+                      <ion-select-option value="neuve">Neuve</ion-select-option>
+                      <ion-select-option value="excellente">Excellente</ion-select-option>
+                      <ion-select-option value="très bonne">Très bonne</ion-select-option>
+                      <ion-select-option value="bonne">Bonne</ion-select-option>
+                      <ion-select-option value="moyenne">Moyenne</ion-select-option>
+                      <ion-select-option value="mauvaise">Mauvaise</ion-select-option>
+                    </ion-select>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label><ion-text color="medium">Description:</ion-text>
+                    <ion-input
+                      [(ngModel)]="description"
+                      label=""
+                      labelPlacement="stacked"
+                      [clearInput]="true"
+                      placeholder="Enter text to see clear button"
+                      value="{{card.desc_etat}}"
+                      name="description"
+                    >
+                    </ion-input>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label><ion-text color="medium">Type: </ion-text>
+                    <ion-select [(ngModel)]="type" label="" value="{{card.type}}" label-placement="floating" fill="solid" name="type">
+                      <ion-select-option value="holo">Holo</ion-select-option>
+                      <ion-select-option value="reverse">Reverse</ion-select-option>
+                      <ion-select-option value="normale">Normale</ion-select-option>
+                    </ion-select>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label><ion-text color="medium">Quantitée:</ion-text>
+                    <ion-input
+                      [(ngModel)]="quantity"
+                      label=""
+                      labelPlacement="stacked"
+                      [clearInput]="true"
+                      placeholder="Enter text to see clear button"
+                      value="{{card.quantite}}"
+                      name="quantity"
+                    >
+                    </ion-input>
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-button id="delete-alert" expand="block" color="secondary" type="submit">Modifier le carte</ion-button>
+        <ion-alert trigger="delete-alert" header="Voulez-vous modifier cette carte?" [buttons]="alertButtons"></ion-alert>
+      </ion-card>
+    </ion-grid>
+  </div>
+
 </ion-content>
+
+
