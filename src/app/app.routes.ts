@@ -5,8 +5,11 @@ import { EchangesPage } from './layout/echanges/echanges.page';
 import { CardPatchPage } from './layout/card/card-patch/card-patch.page';
 import { CardPostPage } from './layout/card/card-post/card-post.page';
 
+
+
 export const routes: Routes = [
   {
+   
     path: "",
     loadComponent: () =>
       import("./layout/layout.page").then((m) => m.LayoutPage),
@@ -19,6 +22,10 @@ export const routes: Routes = [
         {
           path: 'deck',
           loadComponent: () => import('./layout/deck/deck.page').then(m => m.DeckPage)
+        },
+        {
+          path: 'deckChoixEchange',
+          loadComponent: () => import('./layout/deck-choix-echange/deck-choix-echange.page').then( m => m.DeckChoixEchangePage)
         },
         {
           path: 'ajouterCarte',
@@ -40,6 +47,10 @@ export const routes: Routes = [
           loadComponent: () => import('./layout/message/message.page').then(m => m.MessagePage)
         },
         {
+          path: 'echangeCreer',
+          loadComponent: () => import('./layout/echange-creer/echange-creer.page').then( m => m.EchangeCreerPage),
+        },
+        {
           path: 'echangeDetails',
           loadComponent: () => import('./layout/echange-details/echange-details.page').then( m => m.EchangeDetailsPage)
         },
@@ -55,6 +66,11 @@ export const routes: Routes = [
           path: 'message-ecrire',
           loadComponent: () => import('./layout/message-ecrire/message-ecrire.page').then( m => m.MessageEcrirePage)
         },
+        {
+          path: 'messageUtilisateur/:username',
+          loadChildren : () => import('./layout/message-utilisateur/message-utilisateur.page').then(m => m.MessageUtilisateurPage),
+        },
+      
         {
           path: '',
           redirectTo: 'home',
@@ -79,6 +95,7 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./security/register/register.page').then( m => m.RegisterPage)
   },
+ 
 
 ];
 

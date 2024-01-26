@@ -23,8 +23,21 @@ export class CardPostPage implements OnInit {
   description: string = '';
   type: string = '';
   statut: string = '';
-  quantity: string = '';
+  //quantity: string = '';
+  quantity: number = 1;
+  quantityControl: any;
+  ajouterCarte() {
+    // Vérifiez si la quantité est valide avant de procéder à l'ajout
+    if (!this.quantityControl.valid) {
+      // Affichez éventuellement un message d'erreur ou effectuez une action appropriée
+      console.log("La quantité est requise.");
+      return;
+    }
 
+    // Logique d'ajout de la carte
+    console.log("Ajout de la carte avec la quantité :", this.quantity);
+    // Autres actions à effectuer lors de l'ajout...
+  }
   constructor(private route: ActivatedRoute, private http: HttpClient, private authService: AuthService, private router: Router) {
   }
 
@@ -73,6 +86,7 @@ export class CardPostPage implements OnInit {
     })
   }
 
+  
   ngOnInit() {
     this.cardId = this.route.snapshot.params['cardId'];
     this.getPokemonDatas(this.cardId);

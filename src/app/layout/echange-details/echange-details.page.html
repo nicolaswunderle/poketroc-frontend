@@ -74,9 +74,16 @@
         Type : reverse
       </ion-card-content>
     </ion-card>
-
-    <ion-button class="custom-confirm-button" color="primary">Confirmer</ion-button>
+<ion-item>
+    <ion-button id="present-alert-je" (click)="goToEchangeDetailsPage()" class="custom-confirm-button-je" color="primary">Confirmer</ion-button>
+    <ion-alert trigger="present-alert-je"
+    header="Confirmation de l'échange"
+    subHeader="Votre échange a été validé."
+    message="Vous pouvez désormais visionner votre nouvel échange dans votre deck!"
+    [buttons]="alertButtons"
+  ></ion-alert>
+    
     <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
     <ion-button (click)="goToUserMessagePage()" class="custom-discuter-button" color="medium">Discuter</ion-button>
-  </ion-card>
+  </ion-item></ion-card>
 </ion-content>

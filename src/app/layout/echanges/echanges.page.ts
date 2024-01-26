@@ -11,8 +11,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./echanges.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
+  
 })
 export class EchangesPage implements OnInit {
+  alertButtons = ['Fermer'];
   cardId: any;
   //concerne la création des onglets
   segmentOption = true;
@@ -28,7 +30,9 @@ export class EchangesPage implements OnInit {
     this.router.navigate(['/echangeDetails']);
   }
 
-
+  goToEchangePage(){
+    this.router.navigate(['/echange']);
+  }
   
   
 }
