@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CallbackID, Geolocation, PositionOptions, WatchPositionCallback } from '@capacitor/geolocation';
 import { MapComponent } from './map/map.component';
+// import { DresseurComponent } from '.';
 
 @Component({
   selector: 'app-home',
@@ -39,6 +40,13 @@ export class HomePage implements OnInit {
       }
     }, 30000);
     };
+
+
+/* PAGE CARTES ***************************************************************************************************************/
+//connexion websocket (remplacer localhost par lien api)
+// envoyer objet getDresseur -> localisation /
+
+
 
   ngOnInit() {
     this.watchPosition();

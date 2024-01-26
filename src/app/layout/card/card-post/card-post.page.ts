@@ -21,9 +21,19 @@ export class CardPostPage implements OnInit {
   description: string = '';
   type: string = '';
   statut: string = '';
-  quantity: string = '';
+  //quantity: string = '';
+  quantity: number = 1;
+  quantityControl: any;
+  ajouterCarte() {
+    // Vérifiez si la quantité est valide avant de procéder à l'ajout
+    if (!this.quantityControl.valid) {
+      // Affichez éventuellement un message d'erreur ou effectuez une action appropriée
+      console.log("La quantité est requise.");
+      return;
+    }
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private authService: AuthService, private router: Router, private toastController: ToastController) {
+
   }
 
   public alertButtons = [
@@ -85,6 +95,7 @@ export class CardPostPage implements OnInit {
     })
   }
 
+  
   ngOnInit() {
     this.cardId = this.route.snapshot.params['cardId'];
     this.getPokemonDatas(this.cardId);

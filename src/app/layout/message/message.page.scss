@@ -1,0 +1,18 @@
+.message-container {
+    padding: 8px;           
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+  
+    strong {
+      margin-left: -16px;    
+      font-weight: bold;
+    }
+  
+    ion-note {
+      margin-top: 4px;        
+      margin-left: -20px;      
+    }
+  }
+  
