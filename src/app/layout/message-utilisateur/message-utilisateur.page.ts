@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import {chevronBackOutline} from 'ionicons/icons';
 import {addIcons} from 'ionicons';
-import { Router } from '@angular/router'; 
+import { Router,ActivatedRoute } from '@angular/router'; 
 //importer icones sur notre page hors footer
 //on arrive ici via le bouton "contacter" de la page echange-details
 
@@ -16,14 +16,16 @@ import { Router } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class MessageUtilisateurPage implements OnInit {
+  username: string| null;
   messages = [
     { sender: 'moi', text: 'Bonjour, ravie de voir que ma carte vous plaise !' },
     { sender: 'LeDresseur', text: 'Gros coup de coeur oui' },
   ];
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
     addIcons({
       chevronBackOutline: chevronBackOutline
     })
+    this.username = this.route.snapshot.paramMap.has('username') ? this.route.snapshot.paramMap.get('username') : null;
    }
 
   ngOnInit() {

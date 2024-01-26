@@ -27,4 +27,7 @@ export class MessagePage implements OnInit {
   goToMessageEcrirePage(){
     this.router.navigate(['/message-ecrire']);
   }
+  goToMessageUtilisateurPage(username: string) {
+    this.router.navigate(['/messageUtilisateur', { username }]);
+  }
 }
