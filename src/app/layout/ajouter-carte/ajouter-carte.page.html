@@ -37,7 +37,7 @@
         <h2>Entre le nom de la carte que tu veux ajouter:</h2>
       </ion-col>
       <ion-col>
-        <ion-searchbar [(ngModel)]="nameSearch" (keyup.enter)="onSearchInput()" show-cancel-button="focus" placeholder="Show on Focus"></ion-searchbar>
+        <ion-searchbar [(ngModel)]="nameSearch" (ionInput)="onSearchInput()" debounce="500" show-cancel-button="focus" placeholder="Show on Focus"></ion-searchbar>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -46,7 +46,7 @@
       <div *ngFor="let card of filteredCards">
         <ion-col *ngIf="card.images.small">
           <ion-card (click)="goToNewCardPage(card.id)">
-            <img width="250" src="{{card.images.small}}">
+            <img height="300" src="{{card.images.small}}">
           </ion-card>
         </ion-col>
       </div>

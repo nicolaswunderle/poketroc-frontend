@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/security/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-ajouter-carte',
@@ -22,7 +23,7 @@ export class AjouterCartePage implements OnInit {
   cards: any[] = [];
   filteredCards: any[] = [];
 
-  constructor(private authService: AuthService, private http: HttpClient, private router: Router) {}
+  constructor(private loadingController: LoadingController, private cdr: ChangeDetectorRef ,private authService: AuthService, private http: HttpClient, private router: Router) {}
 
   getPokemonDatasById(card: any){
     if(this.notInDeck === true){
@@ -39,7 +40,16 @@ export class AjouterCartePage implements OnInit {
     };
   }
 
+  onSearchInput() {
+    console.log('onSearchInput called');
+    const searchTerm = this.nameSearch.trim().toLowerCase();
+    this.filteredCards = this.filterCards(searchTerm);
+    this.getPokemonDatasByName();
+    this.cdr.detectChanges();
+  }
+
   getPokemonDatasByName(){
+    this.presentLoading();
     const urlApi = environment.apiPokemonTCGUrl + `/cards?q=name:${this.nameSearch}*`;
     const token = environment.tokenPokemonTCG;
     const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
@@ -49,22 +59,15 @@ export class AjouterCartePage implements OnInit {
       } else {
         console.error('Les données reçues ne sont pas sous forme de tableau:', res);
       }
-    },(error) => {console.error('Erreur lors de la récupération des cartes:', error);});
+    },
+    (error) => {console.error('Erreur lors de la récupération des cartes:', error);
+    },
+    () => {this.dismissLoading();
+    });
   }
 
-  filterCards(){
-    console.log('hello');
-    this.getPokemonDatasByName();
-    console.log('hello');
-    const searchTerm = this.nameSearch.trim().toLowerCase();
-    this.filteredCards = this.filterCardsByName(searchTerm);
-    console.log('hello');
-  }
-
-  filterCardsByName(searchTerm: string): any[] {
-    console.log('hello');
+  filterCards(searchTerm: string): any[] {
     const matchingCards: any[] = [];
-    console.log('hello');
     for (const card of this.cards) {
       const cardNameLower = card.name.toLowerCase();
       if (cardNameLower.includes(searchTerm)) {
@@ -72,11 +75,6 @@ export class AjouterCartePage implements OnInit {
       }
     }
     return matchingCards;
-  }
-
-  onSearchInput() {
-    this.filterCards();
-    console.log(this.filteredCards);
   }
 
   isCardInDeck(){
@@ -108,6 +106,21 @@ export class AjouterCartePage implements OnInit {
     });
 
   }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Chargement en cours...',
+      duration: 3000,
+      translucent: true,
+      cssClass: 'custom-loading'
+    });
+    await loading.present();
+  }
+
+  async dismissLoading() {
+    await this.loadingController.dismiss();
+  }
+
 
   ngOnInit() {
   }

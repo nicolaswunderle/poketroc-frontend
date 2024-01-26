@@ -69,8 +69,10 @@ export class DeckPage implements OnInit {
 
   segmentChanged(ev: any) {
     if (ev.detail.value === 'collected') {
+      this.reloadPage();
       this.segmentOption = true;
     } else {
+      this.reloadPage();
       this.segmentOption = false;
     }
   }
@@ -92,7 +94,6 @@ export class DeckPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.reloadPage();
   }
 
 }
