@@ -43,6 +43,7 @@ Construire l'application si ce n'est pas déjà fait ou s'il y a eu des changeme
 ## Backend
 
 Lien vers l'API Poketroc [https://poketroc.onrender.com/api](https://poketroc.onrender.com/api)
+Lien vers la documentation de l'API Poketroc [https://poketroc.onrender.com/api-docs/](https://poketroc.onrender.com/api-docs/)
 
 Le lien vers l'api est défini dans le fichier src/environnements/environment.ts
 1. Il suffit de l'importer `import { environment } from "src/environments/environment";`
