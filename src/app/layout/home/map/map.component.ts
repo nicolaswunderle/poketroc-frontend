@@ -1,6 +1,11 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { Geolocation, Position } from '@capacitor/geolocation';
 import * as L from 'leaflet';
+import { environment } from "src/environments/environment";
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/security/auth.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -11,11 +16,32 @@ import * as L from 'leaflet';
 
 export class MapComponent implements AfterViewInit {
 map: L.Map = {} as L.Map;
+dresseurId: any;
+dresseur: any;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private authService: AuthService, private http: HttpClient, private router: Router) { }
+
+  // chercher les données utilisateur dans le background
+  getUserDatas(){
+    // en brut en attendant la liste
+    const url = environment.apiUrl + `/dresseurs/65a4f2da7ca0771b4454a8aa`;
+    this.authService.getToken$().subscribe((token) => {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      this.http.get(url, {headers}).subscribe((donnees: any) => {
+        this.dresseur = donnees;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des données utilisateur :', error);
+      }
+      )
+    })
+  }
 
   ngAfterViewInit(): void {
     this.createMap();
+    this.getUserDatas();
   }
 
   createMap() {
@@ -37,10 +63,6 @@ map: L.Map = {} as L.Map;
       });
 
       mainLayer.addTo(this.map);
-
-      // Ajouter un marqueur pour indiquer la position de l'utilisateur
-      // const dresseurUser = L.marker([lat, lng]).addTo(this.map);
-      // dresseurUser.bindPopup('Votre position').openPopup(); // permet de mettre du texte _> afficher nom dresseur ?
  
        // créer une fonction qui prend une image aléatoire dans le dossier _img/
        const randomImg = () => {
@@ -58,7 +80,7 @@ map: L.Map = {} as L.Map;
 
       // Ajout du marker avec icône personnalisée
       const dresseurUser = L.marker([lat, lng], { icon: customIcon }).addTo(this.map);
-      dresseurUser.bindPopup('').openPopup();
+      dresseurUser.bindPopup(`${this.dresseur.pseudo}`).openPopup();
       const dresseurListe = L.marker([lat, lng], { icon: customIcon }).addTo(this.map); // changer liste.lat et liste.lng <- en attente
       //pour autres joueur on recoit une liste avec leur position => boucle for avec const dresseurUser avec nom liste dresseur
     })
