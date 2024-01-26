@@ -24,34 +24,43 @@ map: L.Map = {} as L.Map;
       const lng = position.coords.longitude;
       const zoomLevel = 14;
 
-    //créer la carte
-    this.map = L.map('map', {
-      center: [lat, lng],
-      zoom: zoomLevel
-    });
+      //créer la carte
+      this.map = L.map('map', {
+        center: [lat, lng],
+        zoom: zoomLevel
+      });
 
-    const mainLayer= L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      minZoom: 12,
-      maxZoom: 17,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyrigth">OpenStreetMap</a> contributors'
-    });
+      const mainLayer= L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        minZoom: 10,
+        maxZoom: 17,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyrigth">OpenStreetMap</a>' 
+      });
 
-    mainLayer.addTo(this.map);
+      mainLayer.addTo(this.map);
 
-    // Rafraîchir la carte après un certain temps
-    setInterval(() => {
-      this.refreshMap();
-    }, 30000); //  = 30 sec.
-    }).catch(err => {
-      console.warn(`Erreur : ${err.message}`);
-    });
-  }
+      // Ajouter un marqueur pour indiquer la position de l'utilisateur
+      // const dresseurUser = L.marker([lat, lng]).addTo(this.map);
+      // dresseurUser.bindPopup('Votre position').openPopup(); // permet de mettre du texte _> afficher nom dresseur ?
+ 
+       // créer une fonction qui prend une image aléatoire dans le dossier _img/
+       const randomImg = () => {
+        const img = Math.floor(Math.random() * 16) + 1;
+        return `./assets/_img/${img}.png`;
+      };
 
-  refreshMap() {
-    // Effacer la carte
-    this.map.remove();
+      // création de l'icône avec image aléatoire
+      const customIcon = L.icon({
+        iconUrl: randomImg(),
+        iconSize: [32, 64], // taille img en px
+        iconAnchor: [16, 32], // point encrage icône sur position
+        popupAnchor: [0, -32] // point encrage popup sur position
+      })
 
-    // Appeler à nouveau la création de la carte
-    this.createMap();
+      // Ajout du marker avec icône personnalisée
+      const dresseurUser = L.marker([lat, lng], { icon: customIcon }).addTo(this.map);
+      dresseurUser.bindPopup('').openPopup();
+      const dresseurListe = L.marker([lat, lng], { icon: customIcon }).addTo(this.map); // changer liste.lat et liste.lng <- en attente
+      //pour autres joueur on recoit une liste avec leur position => boucle for avec const dresseurUser avec nom liste dresseur
+    })
   }
 }
