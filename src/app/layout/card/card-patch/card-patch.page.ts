@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { IonicModule, ToastController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/security/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -24,7 +23,7 @@ export class CardPatchPage implements OnInit {
   type: string = '';
   quantity: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private http: HttpClient, private toastController: ToastController) { }
 
   public alertButtons = [
     {
@@ -40,10 +39,22 @@ export class CardPatchPage implements OnInit {
       handler: () => {
         console.log('Carte modifié');
         this.patchCardDatas();
-        this.router.navigate(['/deck']);
+        this.router.navigate(['/deck']).then(() => {
+          this.presentConfirmationToast();
+        });
       },
     },
   ];
+
+  async presentConfirmationToast() {
+    const toast = await this.toastController.create({
+      message: 'La carte a été modifiée avec succès.',
+      duration: 5000,
+      position: 'top',
+      color: 'success'
+    });
+    await toast.present();
+  }
 
   getCardDatas(){
     const url = environment.apiUrl + `/cartes/${this.cardId}`;

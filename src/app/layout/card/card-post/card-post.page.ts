@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { IonicModule, ToastController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/app/security/auth.service';
-import { catchError } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-post',
@@ -25,7 +23,7 @@ export class CardPostPage implements OnInit {
   statut: string = '';
   quantity: string = '';
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private authService: AuthService, private router: Router) {
+  constructor(private route: ActivatedRoute, private http: HttpClient, private authService: AuthService, private router: Router, private toastController: ToastController) {
   }
 
   public alertButtons = [
@@ -42,10 +40,23 @@ export class CardPostPage implements OnInit {
       handler: () => {
         console.log('Carte ajoutée');
         this.postCard();
-        this.router.navigate([`/deck/`]);
+        this.router.navigate([`/deck/`]).then(() => {
+          console.log('alerte')
+          this.presentConfirmationToast();
+        });
       },
     },
   ];
+
+  async presentConfirmationToast() {
+    const toast = await this.toastController.create({
+      message: 'La carte a été créée avec succès.',
+      duration: 5000,
+      position: 'top',
+      color: 'success'
+    });
+    await toast.present();
+  }
 
   postCard(){
     const cardPost = {
@@ -64,12 +75,13 @@ export class CardPostPage implements OnInit {
     });
   }
 
-  getPokemonDatas(card: any){
-    const url = environment.apiPokemonTCGUrl + `/cards/${card}`;
+  getPokemonDatas(cardId: any){
+    const url = environment.apiPokemonTCGUrl + `/cards/${cardId}`;
     const token = environment.tokenPokemonTCG;
     const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
     this.http.get(url, {headers}).subscribe((res: any) => {
       this.cardDatas = res.data;
+      console.log(res.data)
     })
   }
 
