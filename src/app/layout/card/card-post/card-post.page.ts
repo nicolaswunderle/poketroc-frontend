@@ -42,9 +42,7 @@ export class CardPostPage implements OnInit {
       handler: () => {
         console.log('Carte ajoutée');
         this.postCard();
-        this.router.navigate([`/deck/`]).then(() => {
-          window.location.reload();
-        });
+        this.router.navigate([`/deck/`]);
       },
     },
   ];
