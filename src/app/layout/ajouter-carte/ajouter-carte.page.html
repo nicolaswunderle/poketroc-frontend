@@ -10,58 +10,48 @@
       <ion-title size="large">Ajouter une carte</ion-title>
     </ion-toolbar>
   </ion-header>
-<!--
-  <ion-card>
-    <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-    <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>
-     Informations sur la carte
-    </ion-card-content>
-  </ion-card>
-  <ion-list>
-  
-    <ion-item>
-      <ion-select label="Etat" label-placement="fixed" placeholder="Etat de la carte">
-        <ion-select-option value="excellent">Excellent</ion-select-option>
-        <ion-select-option value="moyen">Moyen</ion-select-option>
-        <ion-select-option value="abîmé">Abimé</ion-select-option>
-      </ion-select>
-    </ion-item>
-  
-    <ion-item>
-      <ion-input label="Description de l'état" value="Bon état,.."></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-select label="Type" label-placement="fixed" placeholder="Type de la carte">
-        <ion-select-option value="excellent">Spécial</ion-select-option>
-        <ion-select-option value="moyen">Moyen</ion-select-option>
-        <ion-select-option value="abîmé">Edition limité</ion-select-option>
-      </ion-select>
-    </ion-item>
-  
-    <ion-item>
-      <ion-input label="Quantité" value="1" [disabled]="true"></ion-input>
-    </ion-item>
-    <ion-row class="ion-justify-content-end">
-      <ion-button color="danger">Annuler</ion-button>
-      <ion-button color="primary">Confirmer</ion-button>
-    <ion-row>
--->
   <ion-grid [fixed]="true">
-    <ion-row>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
       <ion-col>
         <h2>Entrez le numéro de la carte que vous voulez ajouter:</h2>
         <a href="https://pokemontcg.guru/">Lien pour trouver numéro de carte</a>
       </ion-col>
       <ion-col>
-        <ion-input [(ngModel)]="cardNb" label="Numéro de carte" label-placement="floating" fill="solid" placeholder="Enter un numéro de carte"></ion-input>
-        <ion-button color="secondary" expand="block" (click)="submitCardNb()">Ajouter</ion-button>
+        <form #addCardByNbForm="ngForm">
+          <ion-input [(ngModel)]="cardNb" name="cardNb" label="Numéro de carte" label-placement="floating" fill="solid" placeholder="Enter un numéro de carte" required></ion-input>
+          <ion-button [disabled]="!addCardByNbForm.valid" color="secondary" expand="block" (click)="isCardInDeck()">Ajouter</ion-button>
+        </form>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-grid [fixed]="true">
+    <ion-row>
+      <ion-col>
+        <h2 class="ion-text-center">Ou</h2>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid [fixed]="true">
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col>
+        <h2>Entre le nom de la carte que tu veux ajouter:</h2>
+      </ion-col>
+      <ion-col>
+        <ion-searchbar [(ngModel)]="nameSearch" (ionInput)="onSearchInput()" debounce="500" show-cancel-button="focus" placeholder="Show on Focus"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid [fixed]="true" *ngIf="filteredCards">
+    <ion-row>
+      <div *ngFor="let card of filteredCards">
+        <ion-col *ngIf="card.images.small">
+          <ion-card (click)="goToNewCardPage(card.id)">
+            <img height="300" src="{{card.images.small}}">
+          </ion-card>
+        </ion-col>
+      </div>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+

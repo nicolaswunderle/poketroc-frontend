@@ -23,7 +23,7 @@
             </ion-col>
             <ion-col>
               <ion-list>
-                <ion-item>
+                <ion-item *ngIf="cardDatas.types">
                   <ion-label><ion-text color="medium">Pokémon de type: </ion-text></ion-label><ion-badge color="warning">{{cardDatas.types}}</ion-badge>
                 </ion-item>
                 <ion-item>
@@ -33,74 +33,74 @@
                   <ion-label><ion-text color="medium">Rareté: </ion-text></ion-label><ion-badge color="medium">{{cardDatas.rarity}}</ion-badge>
                 </ion-item>
               </ion-list>
-              <ion-list lines="none">
-                <ion-item color="warning">
-                  <ion-text><h3>Votre carte</h3></ion-text>
-                </ion-item>
-                <ion-item><ion-text>Entrez les informations concernant votre carte Pokémon :</ion-text></ion-item>
-                <ion-item>
-                  <ion-label><ion-text color="medium">État: </ion-text><ion-text color="danger">(Requis)</ion-text></ion-label>
-                  <ion-select [(ngModel)]="etat" label="État de la carte" label-placement="floating" fill="solid" name="type">
-                    <ion-select-option value="neuve">Neuve</ion-select-option>
-                    <ion-select-option value="excellente">Excellente</ion-select-option>
-                    <ion-select-option value="très bonne">Très bonne</ion-select-option>
-                    <ion-select-option value="bonne">Bonne</ion-select-option>
-                    <ion-select-option value="moyenne">Moyenne</ion-select-option>
-                    <ion-select-option value="mauvaise">Mauvaise</ion-select-option>
-                  </ion-select>
-                </ion-item>
-                <ion-item>
-                  <ion-label><ion-text color="medium">Description: </ion-text></ion-label>
-                  <ion-input
-                    [(ngModel)]="description"
-                    label=""
-                    labelPlacement="stacked"
-                    [clearInput]="true"
-                    placeholder="Entrez une description de la carte"
-                    name="description"
-                  >
-                  </ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label><ion-text color="medium">Type: </ion-text><ion-text color="danger">(Requis)</ion-text></ion-label>
-                  <ion-select [(ngModel)]="type" label="Type de la carte" label-placement="floating" fill="solid" name="type">
-                    <ion-select-option value="holo">Holo</ion-select-option>
-                    <ion-select-option value="reverse">Reverse</ion-select-option>
-                    <ion-select-option value="normale">Normale</ion-select-option>
-                  </ion-select>
-                </ion-item>
-                <ion-item>
-                  <ion-label><ion-text color="medium">Statut: </ion-text><ion-text color="danger">(Requis)</ion-text></ion-label>
-                  <ion-select [(ngModel)]="statut" label="Statut de la carte" label-placement="floating" fill="solid" name="type">
-                    <ion-select-option value="collectee">Collectée</ion-select-option>
-                    <ion-select-option value="souhaitee">Souhaitée</ion-select-option>
-                  </ion-select>
-                </ion-item>
-                <ion-item>
-                  <ion-label><ion-text color="medium">Quantité: </ion-text><ion-text color="danger">(Requis)</ion-text></ion-label>
-                  <ion-input
-                  required
-                    [(ngModel)]="quantity"
-                    label=""
-                    labelPlacement="stacked"
-                    [clearInput]="true"
-                    placeholder="Entrez une quantité"
-                    name="quantity"
-                    #quantityControl="ngModel"
-                  >
-                  </ion-input>
-                  <ion-text *ngIf="quantityControl.invalid && quantityControl.touched" color="danger">
-                    La quantité est requise.
-                  </ion-text>
-                </ion-item>
-                <ion-button id="delete-alert" expand="block" color="secondary" type="submit">Ajouter la carte</ion-button>
-                <ion-alert trigger="delete-alert" header="Voulez-vous ajouter cette carte?" message="{{cardDatas.name}}" [buttons]="alertButtons"></ion-alert>
-              </ion-list>
+              <form #postCardForm="ngForm">
+                <ion-list lines="none">
+                  <ion-item color="warning">
+                    <ion-text><h3>Ta carte</h3></ion-text>
+                  </ion-item>
+                  <ion-item><ion-text>Entrez les infomrations consernant votre carte Pokémon :</ion-text></ion-item>
+                  <ion-item>
+                    <ion-label><ion-text color="medium">État: </ion-text><ion-text color="danger">(Requit)</ion-text></ion-label>
+                    <ion-select [(ngModel)]="etat" label="État de la carte" label-placement="floating" fill="solid" name="etat" required>
+                      <ion-select-option value="neuve">Neuve</ion-select-option>
+                      <ion-select-option value="excellente">Excellente</ion-select-option>
+                      <ion-select-option value="très bonne">Très bonne</ion-select-option>
+                      <ion-select-option value="bonne">Bonne</ion-select-option>
+                      <ion-select-option value="moyenne">Moyenne</ion-select-option>
+                      <ion-select-option value="mauvaise">Mauvaise</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label><ion-text color="medium">Description: </ion-text></ion-label>
+                    <ion-input
+                      [(ngModel)]="description"
+                      label=""
+                      [clearInput]="true"
+                      placeholder="(Entrez une description de la carte)"
+                      name="description"
+                    >
+                    </ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label><ion-text color="medium">Type: </ion-text><ion-text color="danger">(Requit)</ion-text></ion-label>
+                    <ion-select [(ngModel)]="type" label="Type de la carte" label-placement="floating" fill="solid" name="type" required>
+                      <ion-select-option value="holo">Holo</ion-select-option>
+                      <ion-select-option value="reverse">Reverse</ion-select-option>
+                      <ion-select-option value="normale">Normale</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label><ion-text color="medium">Statut: </ion-text><ion-text color="danger">(Requit)</ion-text></ion-label>
+                    <ion-select [(ngModel)]="statut" label="Statut de la carte" label-placement="floating" fill="solid" name="statut" required>
+                      <ion-select-option value="collectee">Collectée</ion-select-option>
+                      <ion-select-option value="souhaitee">Souhaitée</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label><ion-text color="medium">Quantitée: </ion-text><ion-text color="danger">(Requit)</ion-text></ion-label>
+                    <ion-input
+                      [(ngModel)]="quantity"
+                      label=""
+                      [clearInput]="true"
+                      placeholder="(Entrez une quantitée)"
+                      name="quantity"
+                      type="number"
+                      max="1000"
+                      min="1x"
+                      error-text="Vous devez entrez un chiffre entre 1 et 1000"
+                      required
+                    >
+                    </ion-input>
+                  </ion-item>
+                  <ion-button id="delete-alert" expand="block" color="secondary" type="submit" [disabled]="!postCardForm.valid">Ajouter le carte</ion-button>
+                    <ion-alert trigger="delete-alert" header="Voulez-vous ajouter cette carte?" message="{{cardDatas.name}}" [buttons]="alertButtons"></ion-alert>
+                </ion-list>
+              </form>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-card>
-      <ion-card>
+      <ion-card *ngIf="cardDatas.attacks">
         <ion-card-header color="warning"><h3>Les attaques de {{cardDatas.name}}</h3></ion-card-header>
         <ion-card-content>
           <div *ngFor="let cardAtt of cardDatas.attacks">
