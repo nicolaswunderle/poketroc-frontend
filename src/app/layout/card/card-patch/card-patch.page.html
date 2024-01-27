@@ -42,7 +42,7 @@
                         label=""
                         labelPlacement="stacked"
                         [clearInput]="true"
-                        placeholder="Enter text to see clear button"
+                        placeholder="Ecrivez votre description"
                         value="{{card.desc_etat}}"
                         name="description"
                       >
@@ -69,8 +69,9 @@
                       >
                       </ion-input>
                   </ion-item>
-                  <ion-button id="delete-alert" expand="block" color="secondary" type="submit">Modifier le carte</ion-button>
+                  <ion-button id="delete-alert" expand="block" color="secondary" type="submit">Modifier la carte</ion-button>
                   <ion-alert trigger="delete-alert" header="Voulez-vous modifier cette carte?" [buttons]="alertButtons"></ion-alert>
+                  <ion-button id="delete-alert-2" (click)="goToDeckPage()"expand="block" color="danger" type="submit" class="custom-annuler-button">Annuler</ion-button>
                 </ion-list>
               </form>
             </ion-col>

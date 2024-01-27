@@ -34,6 +34,8 @@
   </ion-toolbar>
   
     <div *ngIf="cardsColl.length > 0 && segmentOption">
+      <h1>Mes collections</h1>
+      <p>Toutes les cartes que je possède sont ici.</p>
       <ion-grid [fixed]="true">
         <ion-row>
           <div *ngFor="let card of cardsColl">
@@ -58,6 +60,8 @@
       </ion-grid>
     </div>
     <div *ngIf="cardsWant.length > 0 && !segmentOption">
+      <h1>Mes souhaits</h1>
+      <p>Toutes les cartes que je souhaite avoir et que je n'ai pas sont ici.</p>
       <ion-grid [fixed]="true">
         <ion-row>
           <div *ngFor="let card of cardsWant">
