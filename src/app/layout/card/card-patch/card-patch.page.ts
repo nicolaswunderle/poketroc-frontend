@@ -106,5 +106,7 @@ export class CardPatchPage implements OnInit {
     this.cardId = this.route.snapshot.params['cardId'];
     this.getCardDatas();
   }
-
+  goToDeckPage(){
+    this.router.navigate(['/deck']);
+  }
 }
