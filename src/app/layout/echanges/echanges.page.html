@@ -15,13 +15,13 @@
       <ion-title size="large">Echanges</ion-title>
     </ion-toolbar>
   </ion-header>
-
     <ion-card>
       <img alt="Silhouette of mountains" height="300" src="https://ionicframework.com/docs/img/demos/card-media.png" />
       <ion-card-header>
         <ion-card-title>Voici vos échanges en attente</ion-card-title>
       </ion-card-header>
             <ion-label>Vous avez reçu une demande d'échange de la part de :</ion-label>
+
           <ion-item>
             <ion-thumbnail slot="start">
           <ion-button color="medium" (click)="goToAnotherPage()">  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" /></ion-button> 
@@ -34,7 +34,13 @@
             message="Vous pouvez désormais visionner votre nouvel échange dans votre deck."
             [buttons]="alertButtons"
           ></ion-alert>
-            <ion-button class="custom-delete-button"  color="danger">Supprimer</ion-button>
+            <ion-button id="present-alert-h" (click)="goToEchangePage()"class="custom-delete-button-h"  color="danger">Supprimer</ion-button>
+            <ion-alert trigger="present-alert-h"
+            header="Suppresion de l'échange"
+            subHeader="Vous avez refusé l'échange"
+            message="La demande d'échange a été supprimée."
+            [buttons]="alertButtons"
+          ></ion-alert>
           </ion-item>
 
           <ion-item>
@@ -49,7 +55,13 @@
             message="Vous pouvez désormais visionner votre nouvel échange dans votre deck."
             [buttons]="alertButtons"
           ></ion-alert>
-            <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
+            <ion-button id="present-alert-g" (click)="goToEchangePage()"class="custom-delete-button-g" color="danger">Supprimer</ion-button>
+            <ion-alert trigger="present-alert-g"
+            header="Suppresion de l'échange"
+            subHeader="Vous avez refusé l'échange"
+            message="La demande d'échange a été supprimée."
+            [buttons]="alertButtons"
+          ></ion-alert>
           </ion-item>
 
           <ion-item>
@@ -64,8 +76,13 @@
             message="Vous pouvez désormais visionner votre nouvel échange dans votre deck."
             [buttons]="alertButtons"
           ></ion-alert>
-            
-            <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
+            <ion-button id="present-alert-f" (click)="goToEchangePage()" class="custom-delete-button-f" color="danger">Supprimer</ion-button>
+            <ion-alert trigger="present-alert-f"
+            header="Suppresion de l'échange"
+            subHeader="Vous avez refusé l'échange"
+            message="La demande d'échange a été supprimée."
+            [buttons]="alertButtons"
+          ></ion-alert>
           </ion-item>
 
           <ion-item lines="none">
@@ -75,12 +92,18 @@
             <ion-label>fanPokemon</ion-label>
             <ion-button id="present-alert-a" (click)="goToEchangePage()" class="custom-confirm-button" color="primary">Confirmer</ion-button>
             <ion-alert trigger="present-alert-a"
-  header="Confirmation de l'échange"
-  subHeader="Votre échange a été validé."
-  message="Vous pouvez désormais visionner votre nouvel échange dans votre deck."
-  [buttons]="alertButtons"
-></ion-alert>
-            <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
+            header="Confirmation de l'échange"
+            subHeader="Votre échange a été validé."
+            message="Vous pouvez désormais visionner votre nouvel échange dans votre deck."
+            [buttons]="alertButtons"
+            ></ion-alert>
+            <ion-button id="present-alert-e" (click)="goToEchangePage()"class="custom-delete-button-e" color="danger">Supprimer</ion-button>
+            <ion-alert trigger="present-alert-e"
+            header="Suppresion de l'échange"
+            subHeader="Vous avez refusé l'échange"
+            message="La demande d'échange a été supprimée."
+            [buttons]="alertButtons"
+            ></ion-alert>
           </ion-item>      
     </ion-card>
 </ion-content>

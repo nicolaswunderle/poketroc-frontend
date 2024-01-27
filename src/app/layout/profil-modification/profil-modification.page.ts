@@ -5,37 +5,38 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/security/auth.service";
 import { logOut as logOutIcon, pencil } from "ionicons/icons";
+//pour changer de photo de profil et utiliser sa caméra, il faudra peut-être utiliser Cordova Camera
 
 
 @Component({
-  selector: 'app-profil',
-  templateUrl: './profil.page.html',
-  styleUrls: ['./profil.page.scss'],
+  selector: 'app-profil-modification',
+  templateUrl: './profil-modification.page.html',
+  styleUrls: ['./profil-modification.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class ProfilPage implements OnInit {
+export class ProfilModificationPage implements OnInit {
   readonly logOutIcon = logOutIcon;
   readonly pencil = pencil;
 
   constructor(
-    // Inject the authentication provider.
+    
     private auth: AuthService,
-    // Inject the router
+    
     private router: Router
   ) {}
 
   ngOnInit() {
   }
 
-  // Add a method to log out.
+ 
   logOut() {
     console.log("logging out...");
     this.auth.logOut();
     this.router.navigateByUrl("/login");
   }
-  goToProfilModificationPage(){
-    this.router.navigate(['/profilModification']);
+  goToProfilPage(){
+    this.router.navigate(['/profil']);
   }
 
 }

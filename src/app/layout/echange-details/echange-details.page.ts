@@ -34,8 +34,8 @@ currentImageIndex: number = 0;
 
   ngOnInit() {
   }
-  goToEchangeDetailsPage(){
-    this.router.navigate(['/echangesDetails']);
+  goToEchangesPage(){
+    this.router.navigate(['/echanges']);
   
   }
   goToUserMessagePage() {
