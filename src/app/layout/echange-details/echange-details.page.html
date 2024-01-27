@@ -51,8 +51,20 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-button class="custom-confirm-button" color="primary">Confirmer</ion-button>
-    <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
+    <ion-button id="present-alert-6" (click)="goToEchangesPage()" class="custom-confirm-button-6" color="primary">Confirmer</ion-button>
+    <ion-alert trigger="present-alert-6"
+    header="Confirmation de l'échange"
+    subHeader="Votre échange a été validé."
+    message="Vous pouvez désormais visionner votre nouvel échange dans votre deck!"
+    [buttons]="alertButtons"
+  ></ion-alert>
+    <ion-button id="present-alert-7" (click)="goToEchangesPage()" class="custom-delete-button-7" color="danger">Supprimer</ion-button>
+    <ion-alert trigger="present-alert-7"
+    header="Suppresion de l'échange"
+    subHeader="Vous avez refusé l'échange"
+    message="La demande d'échange a été supprimée."
+    [buttons]="alertButtons"
+  ></ion-alert>
     <ion-button (click)="goToUserMessagePage()" class="custom-discuter-button" color="medium">Discuter</ion-button>
   </ion-card>
 
@@ -75,15 +87,21 @@
       </ion-card-content>
     </ion-card>
 <ion-item>
-    <ion-button id="present-alert-je" (click)="goToEchangeDetailsPage()" class="custom-confirm-button-je" color="primary">Confirmer</ion-button>
-    <ion-alert trigger="present-alert-je"
+    <ion-button id="present-alert-6" (click)="goToEchangesPage()" class="custom-confirm-button-6" color="primary">Confirmer</ion-button>
+    <ion-alert trigger="present-alert-6"
     header="Confirmation de l'échange"
     subHeader="Votre échange a été validé."
     message="Vous pouvez désormais visionner votre nouvel échange dans votre deck!"
     [buttons]="alertButtons"
   ></ion-alert>
     
-    <ion-button class="custom-delete-button" color="danger">Supprimer</ion-button>
+    <ion-button id="present-alert-7" (click)="goToEchangesPage()" class="custom-delete-button-7" color="danger">Supprimer</ion-button>
+    <ion-alert trigger="present-alert-7"
+    header="Suppresion de l'échange"
+    subHeader="Vous avez refusé l'échange"
+    message="La demande d'échange a été supprimée."
+    [buttons]="alertButtons"
+  ></ion-alert>
     <ion-button (click)="goToUserMessagePage()" class="custom-discuter-button" color="medium">Discuter</ion-button>
   </ion-item></ion-card>
 </ion-content>
