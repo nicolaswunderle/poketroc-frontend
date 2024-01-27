@@ -31,6 +31,7 @@ export class CardPostPage implements OnInit {
       console.log("La quantité est requise.");
       return;
     }
+  }
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private authService: AuthService, private router: Router, private toastController: ToastController) {
 
