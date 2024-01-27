@@ -14,11 +14,11 @@
     <ion-row class="ion-justify-content-center ion-align-items-center">
       <ion-col>
         <h2>Entrez le numéro de la carte que vous voulez ajouter:</h2>
-        <a href="https://pokemontcg.guru/">Lien pour trouver numéro de carte</a>
+        <a href="https://pokemontcg.guru/">Lien pour trouver le numéro de carte</a>
       </ion-col>
       <ion-col>
         <form #addCardByNbForm="ngForm">
-          <ion-input [(ngModel)]="cardNb" name="cardNb" label="Numéro de carte" label-placement="floating" fill="solid" placeholder="Enter un numéro de carte" required></ion-input>
+          <ion-input [(ngModel)]="cardNb" name="cardNb" label="Numéro de carte" label-placement="floating" fill="solid" placeholder="Entrez un numéro de carte" required></ion-input>
           <ion-button [disabled]="!addCardByNbForm.valid" color="secondary" expand="block" (click)="isCardInDeck()">Ajouter</ion-button>
         </form>
       </ion-col>
@@ -34,7 +34,7 @@
   <ion-grid [fixed]="true">
     <ion-row class="ion-justify-content-center ion-align-items-center">
       <ion-col>
-        <h2>Entre le nom de la carte que tu veux ajouter:</h2>
+        <h2>Entrez le nom de la carte que vous voulez ajouter:</h2>
       </ion-col>
       <ion-col>
         <ion-searchbar [(ngModel)]="nameSearch" (ionInput)="onSearchInput()" debounce="500" show-cancel-button="focus" placeholder="Show on Focus"></ion-searchbar>

@@ -36,11 +36,11 @@
               <form #postCardForm="ngForm">
                 <ion-list lines="none">
                   <ion-item color="warning">
-                    <ion-text><h3>Ta carte</h3></ion-text>
+                    <ion-text><h3>Votre carte</h3></ion-text>
                   </ion-item>
-                  <ion-item><ion-text>Entrez les infomrations consernant votre carte Pokémon :</ion-text></ion-item>
+                  <ion-item><ion-text>Entrez les informations concernant votre carte Pokémon :</ion-text></ion-item>
                   <ion-item>
-                    <ion-label><ion-text color="medium">État: </ion-text><ion-text color="danger">(Requit)</ion-text></ion-label>
+                    <ion-label><ion-text color="medium">État: </ion-text><ion-text color="danger">(Requis)</ion-text></ion-label>
                     <ion-select [(ngModel)]="etat" label="État de la carte" label-placement="floating" fill="solid" name="etat" required>
                       <ion-select-option value="neuve">Neuve</ion-select-option>
                       <ion-select-option value="excellente">Excellente</ion-select-option>
@@ -62,7 +62,7 @@
                     </ion-input>
                   </ion-item>
                   <ion-item>
-                    <ion-label><ion-text color="medium">Type: </ion-text><ion-text color="danger">(Requit)</ion-text></ion-label>
+                    <ion-label><ion-text color="medium">Type: </ion-text><ion-text color="danger">(Requis)</ion-text></ion-label>
                     <ion-select [(ngModel)]="type" label="Type de la carte" label-placement="floating" fill="solid" name="type" required>
                       <ion-select-option value="holo">Holo</ion-select-option>
                       <ion-select-option value="reverse">Reverse</ion-select-option>
@@ -70,19 +70,19 @@
                     </ion-select>
                   </ion-item>
                   <ion-item>
-                    <ion-label><ion-text color="medium">Statut: </ion-text><ion-text color="danger">(Requit)</ion-text></ion-label>
+                    <ion-label><ion-text color="medium">Statut: </ion-text><ion-text color="danger">(Requis)</ion-text></ion-label>
                     <ion-select [(ngModel)]="statut" label="Statut de la carte" label-placement="floating" fill="solid" name="statut" required>
                       <ion-select-option value="collectee">Collectée</ion-select-option>
                       <ion-select-option value="souhaitee">Souhaitée</ion-select-option>
                     </ion-select>
                   </ion-item>
                   <ion-item>
-                    <ion-label><ion-text color="medium">Quantitée: </ion-text><ion-text color="danger">(Requit)</ion-text></ion-label>
+                    <ion-label><ion-text color="medium">Quantité: </ion-text><ion-text color="danger">(Requis)</ion-text></ion-label>
                     <ion-input
                       [(ngModel)]="quantity"
                       label=""
                       [clearInput]="true"
-                      placeholder="(Entrez une quantitée)"
+                      placeholder="(Entrez une quantité)"
                       name="quantity"
                       type="number"
                       max="1000"
