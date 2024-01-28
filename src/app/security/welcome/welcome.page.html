@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Bienvenue</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Bienvenue</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid [fixed]="true">
+    <ion-row>
+      <ion-col size="2">
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title color="secondary">
+              Bienvenue dans l'application Pokétroc !
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Élargissez votre Pokédex et échangez vos Pokémons avec des dresseurs du monde entier grâce à notre application dédiée aux collectionneurs de cartes Pokémon!
+          </ion-card-content>
+          <ion-button color="secondary" (click)="goToLoginPage()" expand="block">Connexion</ion-button>
+          <ion-button color="secondary" (click)="goToRegisterPage()" expand="block">Inscription</ion-button>
+        </ion-card>
+      </ion-col>
+      <ion-col size="2">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

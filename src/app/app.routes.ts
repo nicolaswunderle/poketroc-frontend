@@ -9,7 +9,7 @@ import { CardPostPage } from './layout/card/card-post/card-post.page';
 
 export const routes: Routes = [
   {
-   
+
     path: "",
     loadComponent: () =>
       import("./layout/layout.page").then((m) => m.LayoutPage),
@@ -58,7 +58,7 @@ export const routes: Routes = [
           path: 'echangeCreer',
           loadComponent: () => import('./layout/echange-creer/echange-creer.page').then( m => m.EchangeCreerPage),
         },
-       
+
         {
           path: 'messageUtilisateur',
           loadComponent: () => import('./layout/message-utilisateur/message-utilisateur.page').then( m => m.MessageUtilisateurPage)
@@ -75,12 +75,6 @@ export const routes: Routes = [
           path: 'messageUtilisateur/:username',
           loadChildren : () => import('./layout/message-utilisateur/message-utilisateur.page').then(m => m.MessageUtilisateurPage),
         },
-      
-        {
-          path: '',
-          redirectTo: 'home',
-          pathMatch: 'full'
-        },
         {
           path: 'cartes/:cardId', component: CardPage,
         },
@@ -90,19 +84,29 @@ export const routes: Routes = [
         {
           path: 'echanges/:cardId', component: EchangesPage,
         },
+        {
+          path: '',
+          redirectTo: 'home',
+          pathMatch: 'full'
+        },
       ]
   },
   {
-    path: 'login',
+    path: "bienvenue",
+    loadComponent: () => import('./security/welcome/welcome.page').then( m => m.WelcomePage)
+  },
+  {
+    path: 'connecion',
     loadComponent: () => import('./security/login/login.page').then( m => m.LoginPage)
   },
   {
-    path: 'register',
+    path: 'inscription',
     loadComponent: () => import('./security/register/register.page').then( m => m.RegisterPage)
-  },
-  
+  }
 
- 
+
+
+
 
 ];
 
