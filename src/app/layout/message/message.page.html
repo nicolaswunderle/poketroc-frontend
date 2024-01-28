@@ -18,128 +18,27 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-list [inset]="true">
-    <ion-icon name="createIcon"></ion-icon>
-    <ion-item [button]="true" detail="false">
-      <div class="unread-indicator-wrapper" slot="start">
-        <div class="unread-indicator"></div>
-      </div>
-      <ion-label>
-       <strong>sacha245</strong>
-        <br />
-        <ion-note color="medium" class="ion-text-wrap">
-          Bonjour, je suis ravie que vous ma carte...
-        </ion-note>
-      </ion-label>
-      <div class="metadata-end-wrapper" slot="end">
-        <ion-note color="medium">06:11</ion-note>
-        <ion-icon color="medium" name="chevron-forward"></ion-icon>
-      </div>
-    </ion-item>
-    <ion-item [button]="true" detail="false">
-      <div class="unread-indicator-wrapper" slot="start">
-        <div class="unread-indicator"></div>
-      </div>
-      <ion-item [button]="true" detail="false" (click)="goToMessageUtilisateurPage('LeDresseur')" class="message-item">
-        <div class="message-container">
-          <strong>LeDresseur</strong>
+  <ion-list *ngIf="exchangesDatas" [inset]="true">
+    <!--<ion-icon name="createIcon"></ion-icon>-->
+    <div *ngFor="let echange of exchangesDatas">
+      <ion-item [button]="true" detail="false" (click)="goToMessageUserPage(echange.autre_dresseur.pseudo)">
+        <div class="unread-indicator-wrapper" slot="start">
+          <div class="unread-indicator"></div>
+        </div>
+        <ion-label>
+         <strong>{{echange.autre_dresseur.pseudo}} </strong>
+          <br />
           <ion-note color="medium" class="ion-text-wrap">
-            Gros coup de coeur oui ...
+            Bonjour, je suis ravie que vous ma carte...
           </ion-note>
+        </ion-label>
+        <div class="metadata-end-wrapper" slot="end">
+          <ion-note color="medium">06:11</ion-note>
+        </div>
+        <div class="metadata-end-wrapper" slot="end">
+          <ion-note style="color: white;">État de l'échange: <ion-text color="secondary">{{echange.etat_dresseur}}</ion-text></ion-note>
         </div>
       </ion-item>
-      <div class="metadata-end-wrapper" slot="end">
-        <ion-note color="medium">06:11</ion-note>
-        <ion-icon color="medium" name="chevron-forward"></ion-icon>
-      </div>
-    </ion-item>
-    <ion-item [button]="true" detail="false">
-      <div class="unread-indicator-wrapper" slot="start">
-        <div class="unread-indicator"></div>
-      </div>
-      <ion-label>
-        <strong>jessie10</strong>
-        <br />
-        <ion-note color="medium" class="ion-text-wrap">
-          hahaha
-        </ion-note>
-      </ion-label>
-      <div class="metadata-end-wrapper" slot="end">
-        <ion-note color="medium">06:11</ion-note>
-        <ion-icon color="medium" name="chevron-forward"></ion-icon>
-      </div>
-    </ion-item>
-    <ion-item [button]="true" detail="false">
-      <div class="unread-indicator-wrapper" slot="start">
-        <div class="unread-indicator"></div>
-      </div>
-      <ion-label>
-        <strong>james997</strong>
-        <br />
-        <ion-note color="medium" class="ion-text-wrap">
-         ouais je comprends
-        </ion-note>
-      </ion-label>
-      <div class="metadata-end-wrapper" slot="end">
-        <ion-note color="medium">06:11</ion-note>
-        <ion-icon color="medium" name="chevron-forward"></ion-icon>
-      </div>
-    </ion-item>
-    <ion-item [button]="true" detail="false">
-      <div class="unread-indicator-wrapper" slot="start">
-        <div class="unread-indicator"></div>
-      </div>
-      <ion-label>
-        <strong>miaous54</strong>
-        <br />
-        <ion-note color="medium" class="ion-text-wrap">
-          mdr
-        </ion-note>
-      </ion-label>
-      <div class="metadata-end-wrapper" slot="end">
-        <ion-note color="medium">06:11</ion-note>
-        <ion-icon color="medium" name="chevron-forward"></ion-icon>
-      </div>
-    </ion-item>
-    <ion-item [button]="true" detail="false">
-      <div class="unread-indicator-wrapper" slot="start"></div>
-      <ion-label>
-        <strong>leMeilleurDresseur</strong>
-       <br />
-        <ion-note color="medium" class="ion-text-wrap">A quelle heure voudriez-vous...</ion-note>
-      </ion-label>
-      <div class="metadata-end-wrapper" slot="end">
-        <ion-note color="medium">03:44</ion-note>
-        <ion-icon color="medium" name="chevron-forward"></ion-icon>
-      </div>
-    </ion-item>
-    <ion-item [button]="true" detail="false">
-      <div class="unread-indicator-wrapper" slot="start">
-        <div class="unread-indicator"></div>
-      </div>
-      <ion-label>
-        <strong>teamRocket</strong>
-    <br />
-        <ion-note color="medium" class="ion-text-wrap">
-          Qu'est-ce que vous me proposer...
-        </ion-note>
-      </ion-label>
-      <div class="metadata-end-wrapper" slot="end">
-        <ion-note color="medium">Hier</ion-note>
-        <ion-icon color="medium" name="chevron-forward"></ion-icon>
-      </div>
-    </ion-item>
-    <ion-item [button]="true" detail="false">
-      <div class="unread-indicator-wrapper" slot="start"></div>
-      <ion-label>
-        <strong>ondine12</strong>
-    <br />
-        <ion-note color="medium" class="ion-text-wrap">Superrr!</ion-note>
-      </ion-label>
-      <div class="metadata-end-wrapper" slot="end">
-        <ion-note color="medium">Hier</ion-note>
-        <ion-icon color="medium" name="chevron-forward"></ion-icon>
-      </div>
-    </ion-item>
+    </div>
   </ion-list>
 </ion-content>

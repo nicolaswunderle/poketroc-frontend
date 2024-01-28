@@ -58,11 +58,6 @@ export const routes: Routes = [
           path: 'echangeCreer',
           loadComponent: () => import('./layout/echange-creer/echange-creer.page').then( m => m.EchangeCreerPage),
         },
-
-        {
-          path: 'messageUtilisateur',
-          loadComponent: () => import('./layout/message-utilisateur/message-utilisateur.page').then( m => m.MessageUtilisateurPage)
-        },
         {
           path: 'messageTchatUtilisateur',
           loadComponent: () => import('./layout/message-tchat-utilisateur/message-tchat-utilisateur.page').then( m => m.MessageTchatUtilisateurPage)
@@ -72,8 +67,8 @@ export const routes: Routes = [
           loadComponent: () => import('./layout/message-ecrire/message-ecrire.page').then( m => m.MessageEcrirePage)
         },
         {
-          path: 'messageUtilisateur/:username',
-          loadChildren : () => import('./layout/message-utilisateur/message-utilisateur.page').then(m => m.MessageUtilisateurPage),
+          path: 'message/:username',
+          loadChildren : () => import('./layout/message-utilisateur/message-utilisateur.page').then(m => m.MessageUtilisateurPage,
         },
         {
           path: 'cartes/:cardId', component: CardPage,
@@ -96,7 +91,7 @@ export const routes: Routes = [
     loadComponent: () => import('./security/welcome/welcome.page').then( m => m.WelcomePage)
   },
   {
-    path: 'connecion',
+    path: 'connexion',
     loadComponent: () => import('./security/login/login.page').then( m => m.LoginPage)
   },
   {
