@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject, filter, map, from, delayWhen } from "rxjs";
 import { AuthResponse } from "./auth-response.model";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Dresseur } from "./dresseur.model";
 import { AuthRequest } from "./auth-request.model";
 import { Storage } from "@ionic/storage-angular";
@@ -17,9 +17,9 @@ export class AuthService {
   constructor(private http: HttpClient, private readonly storage: Storage) {
     this.#auth$ = new ReplaySubject(1);
     this.storage.get('auth').then((auth) => {
-    // Emit the loaded value into the observable stream.
-    this.#auth$.next(auth);
-  });
+      // Emit the loaded value into the observable stream.
+      this.#auth$.next(auth);
+    });
   }
 
   /**
@@ -71,10 +71,19 @@ export class AuthService {
    * Logs out the current user.
    */
   logOut(): void {
-    this.#auth$.next(undefined);
-    // Remove the stored authentication from storage when logging out.
-    this.storage.remove('auth');
-    console.log("Le dresseur est déconnecté");
+    this.getToken$().subscribe(token => {
+      const authUrl = `${environment.apiUrl}/dresseurs/connexion`;
+      const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
+      this.http.delete(authUrl, {headers}).subscribe(
+        (res: any) => {
+          this.#auth$.next(undefined);
+          // Remove the stored authentication from storage when logging out.
+          this.storage.remove('auth');
+          console.log("Le dresseur est déconnecté");
+        },(error) => {console.error('Erreur lors de la déconnexion : ', error);}
+      );
+    })
+    
   }
   /**
    * Persists the provided `AuthResponse` to the storage.

@@ -47,10 +47,6 @@ export const routes: Routes = [
           loadComponent: () => import('./layout/profil/profil.page').then(m => m.ProfilPage)
         },
         {
-          path: 'profilModification',
-          loadComponent: () => import('./layout/profil-modification/profil-modification.page').then( m => m.ProfilModificationPage)
-        },
-        {
           path: 'message',
           loadComponent: () => import('./layout/message/message.page').then(m => m.MessagePage)
         },
