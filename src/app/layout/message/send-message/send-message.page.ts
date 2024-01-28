@@ -19,18 +19,22 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 export class SendMessagePage implements OnInit {
   exchangeId: any;
   receivedMessage: any[] = [];
-  newMessage: any;
-  messageSendTo: any;
+  newMessage: string = '';
+  dresseur: any;
 
   constructor(private route: ActivatedRoute ,private wsService:WebsocketService, private auth: AuthService, private http: HttpClient) {}
 
   ngOnInit() {
     this.exchangeId = this.route.snapshot.params['exchangeId'];
+    this.auth.getUser$().subscribe(dresseur => {
+      this.dresseur = dresseur;
+    });
     this.wsService.listen<WsMessage>().subscribe((res: any) => {
       try {
         const parsedResponse = JSON.parse(res);
         const messages = parsedResponse.getMessagesOfEchange;
         if (messages) {
+
           this.receivedMessage.push(...messages);
         } else {
           console.error('The response does not have getMessagesOfEchange property or it is not an array:', parsedResponse);
@@ -39,11 +43,10 @@ export class SendMessagePage implements OnInit {
         console.error('Error parsing WebSocket response:', error);
       }
     })
-    this.sendWebSocketMessage();
-    console.log(this.receivedMessage)
+    this.getWebSocketMessage();
   }
 
-  sendWebSocketMessage(){
+  getWebSocketMessage(){
     this.wsService.send({
       type:'getMessagesOfEchange',
       token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWE0ZjM5OTdjYTA3NzFiNDQ1NGE4YjAiLCJleHAiOjE3MDY2MjMzOTMsImlhdCI6MTcwNjAxODU5M30.QZo2DHDen4avP153klEdyh9CW0wr-w3CYRPw3uQvrwg',
@@ -51,17 +54,24 @@ export class SendMessagePage implements OnInit {
     });
   }
 
-  onEnter(){
-    const messagebody = {
-      echange_id: this.exchangeId,
-      contenu: this.newMessage
-    };
-    const url = environment.apiUrl + `/messages`;
-    this.auth.getToken$().subscribe((token) => {
-      const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
-      this.http.post(url, messagebody, {headers}).subscribe((res:any) => {console.log(res);})
+  send(){
+    this.wsService.listen<WsMessage>().subscribe(() => {})
+    this.sendWebSocketMessage();
+    this.newMessage = '';
+    this.receivedMessage = [];
+    this.ngOnInit();
+  }
+
+  sendWebSocketMessage(){
+    this.wsService.send({
+      type:'sendMessageInEchange',
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWE0ZjM5OTdjYTA3NzFiNDQ1NGE4YjAiLCJleHAiOjE3MDY2MjMzOTMsImlhdCI6MTcwNjAxODU5M30.QZo2DHDen4avP153klEdyh9CW0wr-w3CYRPw3uQvrwg',
+      contenu: this.newMessage,
+      echangeId: this.exchangeId
     });
   }
 
-
+  trackByFn(index: number, message: any): string {
+    return message._id; // Use a unique identifier for each message
+  }
 }

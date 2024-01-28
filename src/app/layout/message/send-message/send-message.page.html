@@ -12,24 +12,44 @@
   </ion-header>
   <div *ngIf="receivedMessage">
     <ion-grid [fixed]="true">
-      <ion-row *ngFor="let message of receivedMessage">
-        <ion-col size="5">
-          <ion-item>
-            <ion-text>
-              <h3>{{message.dresseur_id}}</h3><br/>
+      <ion-row *ngFor="let message of receivedMessage; trackBy: trackByFn">
+        <ion-col>
+          <ion-card *ngIf="dresseur._id === message.dresseur_id" style="text-align: end; background-color: darkslategray;">
+            <ion-card-header>
+              <ion-card-title>
+                <h3>{{dresseur.pseudo}}</h3>
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
               {{message.contenu}}
-            </ion-text>
-          </ion-item>
+            </ion-card-content>
+          </ion-card>
+          <ion-card *ngIf="dresseur._id !== message.dresseur_id">
+            <ion-card-header>
+              <ion-card-title>
+                <h3>{{message.dresseur_id}}</h3>
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              {{message.contenu}}
+            </ion-card-content>
+          </ion-card>
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
   <ion-footer [translucent]="true">
     <ion-toolbar>
-      <ion-item>
-        <ion-textarea [(ngModel)]="newMessage" (keyup.enter)="onEnter()" rows="1" placeholder="Message"></ion-textarea>
-        <ion-button>Envoyer</ion-button>
-      </ion-item>
+      <ion-grid [fixed]="true">
+        <ion-row>
+          <ion-col>
+            <ion-textarea [(ngModel)]="newMessage" (keyup.enter)="send()" rows="1" placeholder="Message"></ion-textarea>
+          </ion-col>
+          <ion-col>
+            <ion-button (click)="send()">Envoyer</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-toolbar>
   </ion-footer>
 </ion-content>
