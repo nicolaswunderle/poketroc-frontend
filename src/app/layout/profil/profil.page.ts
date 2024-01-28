@@ -17,15 +17,21 @@ import { logOut as logOutIcon, pencil } from "ionicons/icons";
 export class ProfilPage implements OnInit {
   readonly logOutIcon = logOutIcon;
   readonly pencil = pencil;
+  dresseur: any;
 
   constructor(
     // Inject the authentication provider.
     private auth: AuthService,
     // Inject the router
     private router: Router
-  ) {}
+  ) {
+    this.auth.getUser$().subscribe(dresseur => {
+      this.dresseur = dresseur
+    })
+  }
 
   ngOnInit() {
+    console.log(this.dresseur)
   }
 
   // Add a method to log out.
