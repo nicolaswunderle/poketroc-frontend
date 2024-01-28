@@ -11,6 +11,9 @@ import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { IonicStorageModule } from "@ionic/storage-angular";
 import { authInterceptor } from './app/security/auth.interceptor';
 
+import { defineCustomElements } from "@ionic/pwa-elements/loader";
+
+defineCustomElements(window);
 if (environment.production) {
   enableProdMode();
 }
@@ -23,5 +26,11 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(),
     importProvidersFrom(IonicStorageModule.forRoot()),
     provideHttpClient(withInterceptors([ authInterceptor ])),
-  ],
+  ]
 });
+
+
+// platformBrowserDynamic()
+//   .bootstrapModule(AppModule)
+//   .then(() => defineCustomElements(window)) // Add this line
+//   .catch((err) => console.log(err));

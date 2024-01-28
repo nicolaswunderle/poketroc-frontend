@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/security/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-card-patch',
   templateUrl: './card-patch.page.html',

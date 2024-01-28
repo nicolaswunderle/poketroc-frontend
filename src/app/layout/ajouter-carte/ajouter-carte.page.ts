@@ -88,7 +88,7 @@ export class AjouterCartePage implements OnInit {
           } else{
             this.http.get(urlSouhaitee, {headers}).subscribe((souhaiteeRes: any) => {
               if(souhaiteeRes.some((e: any) => e.id_api === this.cardNb)) {
-                console.log('Vous posédez déjà cette carte!');
+                console.log('Vous possédez déjà cette carte!');
               } else {
                 this.notInDeck = true;
                 this.getPokemonDatasById(this.cardNb);

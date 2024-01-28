@@ -5,16 +5,21 @@ import { IonicModule } from '@ionic/angular';
 import {caretBack, caretForward} from 'ionicons/icons';
 import {addIcons} from 'ionicons';
 import { Router , ActivatedRoute} from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/security/auth.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Component({
-  selector: 'app-echange-details',
-  templateUrl: './echange-details.page.html',
-  styleUrls: ['./echange-details.page.scss'],
+  selector: 'app-details',
+  templateUrl: './details.page.html',
+  styleUrls: ['./details.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class EchangeDetailsPage implements OnInit {
+export class DetailsPage implements OnInit {
+  echangeId: string = "";
+  echange: object = {};
 alertButtons = ['Fermer'];
 activeSegment: string = 'moi';
 segmentOption = true;
@@ -25,7 +30,12 @@ images: string[] = [
 ];
 currentImageIndex: number = 0;
 
-  constructor(private route: ActivatedRoute, private router: Router) { 
+  constructor(
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private authService: AuthService,
+    private http: HttpClient
+    ) { 
     addIcons({
       caretForward: caretForward,
       caretBack: caretBack
@@ -33,7 +43,24 @@ currentImageIndex: number = 0;
   }
 
   ngOnInit() {
+    this.echangeId = this.route.snapshot.params['echangeId'];
+    this.getEchangeDatas();
   }
+
+  getEchangeDatas(){
+    const url = environment.apiUrl + `/echanges/${this.echangeId}`;
+    this.authService.getToken$().subscribe((token) => {
+      const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
+      this.http.get(url, {headers}).subscribe((res:any) => {
+        this.echange = res;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des échanges:', error);
+      });
+    });
+  }
+
+
   goToEchangesPage(){
     this.router.navigate(['/echanges']);
   
