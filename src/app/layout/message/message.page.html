@@ -21,7 +21,7 @@
   <ion-list *ngIf="exchangesDatas" [inset]="true">
     <!--<ion-icon name="createIcon"></ion-icon>-->
     <div *ngFor="let echange of exchangesDatas">
-      <ion-item [button]="true" detail="false" (click)="goToMessageUserPage(echange.autre_dresseur.pseudo)">
+      <ion-item [button]="true" detail="false" (click)="goToMessageUserPage(echange._id)">
         <div class="unread-indicator-wrapper" slot="start">
           <div class="unread-indicator"></div>
         </div>

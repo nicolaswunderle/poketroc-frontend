@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>send-message</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">send-message</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div *ngIf="receivedMessage">
+    <ion-grid [fixed]="true">
+      <ion-row *ngFor="let message of receivedMessage">
+        <ion-col size="5">
+          <ion-item>
+            <ion-text>
+              <h3>{{message.dresseur_id}}</h3><br/>
+              {{message.contenu}}
+            </ion-text>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-footer [translucent]="true">
+    <ion-toolbar>
+      <ion-item>
+        <ion-textarea [(ngModel)]="newMessage" (keyup.enter)="onEnter()" rows="1" placeholder="Message"></ion-textarea>
+        <ion-button>Envoyer</ion-button>
+      </ion-item>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

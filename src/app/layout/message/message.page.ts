@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import {create} from 'ionicons/icons';
 import {addIcons} from 'ionicons';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/security/auth.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -20,7 +20,8 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 export class MessagePage implements OnInit {
  // createIcon = create;
  exchangesDatas: any[] = [];
-  constructor(private router: Router, private auth: AuthService, private http: HttpClient) {
+ username:any;
+  constructor(private router: Router, private auth: AuthService, private http: HttpClient, private route: ActivatedRoute ) {
     addIcons({
       create: create
     })
@@ -45,7 +46,7 @@ export class MessagePage implements OnInit {
   goToMessageEcrirePage(){
     this.router.navigate(['/message-ecrire']);
   }
-  goToMessageUserPage(pseudo: string) {
-    this.router.navigate(['/messageUtilisateur', { pseudo }]);
+  goToMessageUserPage(exchangeId: string) {
+    this.router.navigate([`message/exchange`, { exchangeId }]);
   }
 }

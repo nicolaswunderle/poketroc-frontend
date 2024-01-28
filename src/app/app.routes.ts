@@ -4,6 +4,7 @@ import { CardPage } from './layout/card/card.page';
 import { EchangesPage } from './layout/echanges/echanges.page';
 import { CardPatchPage } from './layout/card/card-patch/card-patch.page';
 import { CardPostPage } from './layout/card/card-post/card-post.page';
+import { SendMessagePage } from './layout/message/send-message/send-message.page';
 
 
 
@@ -55,20 +56,11 @@ export const routes: Routes = [
           loadComponent: () => import('./layout/message/message.page').then(m => m.MessagePage)
         },
         {
+          path: 'message/exchange', component: SendMessagePage,
+        },
+        {
           path: 'echangeCreer',
           loadComponent: () => import('./layout/echange-creer/echange-creer.page').then( m => m.EchangeCreerPage),
-        },
-        {
-          path: 'messageTchatUtilisateur',
-          loadComponent: () => import('./layout/message-tchat-utilisateur/message-tchat-utilisateur.page').then( m => m.MessageTchatUtilisateurPage)
-        },
-        {
-          path: 'message-ecrire',
-          loadComponent: () => import('./layout/message-ecrire/message-ecrire.page').then( m => m.MessageEcrirePage)
-        },
-        {
-          path: 'message/:username',
-          loadChildren : () => import('./layout/message-utilisateur/message-utilisateur.page').then(m => m.MessageUtilisateurPage,
         },
         {
           path: 'cartes/:cardId', component: CardPage,
@@ -97,7 +89,8 @@ export const routes: Routes = [
   {
     path: 'inscription',
     loadComponent: () => import('./security/register/register.page').then( m => m.RegisterPage)
-  }
+  },
+
 
 
 
