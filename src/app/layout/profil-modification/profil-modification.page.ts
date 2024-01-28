@@ -20,6 +20,7 @@ export class ProfilModificationPage implements OnInit {
   readonly pencil = pencil;
 //photos
 picture:any;
+dresseur: any;
 
   constructor(
     
@@ -30,7 +31,13 @@ picture:any;
     //photos
     private pictureService: PictureService,
     
-  ) {}
+  ) {
+
+    this.auth.getUser$().subscribe(dresseur => {
+      this.dresseur = dresseur
+    })
+
+  }
 
   ngOnInit() {
   }

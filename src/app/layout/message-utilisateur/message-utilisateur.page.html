@@ -11,7 +11,7 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <ion-button (click)="goToEchangeDetailsPage()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+    <ion-button (click)="goToMessagePage()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
     <p>LeDresseur</p>
     <ion-list lines="none" class="chat-container">
       <ion-item *ngFor="let message of messages.slice().reverse(); let i = index"

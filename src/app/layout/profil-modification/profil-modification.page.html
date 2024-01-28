@@ -9,7 +9,6 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -21,14 +20,11 @@
         </ion-button>
       </ion-buttons>
     </ion-toolbar>
-    
   </ion-header>
   <ion-item>
     
      
     <ion-avatar slot="start">
-      
-      
       <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
     </ion-avatar>
     <br>
@@ -40,15 +36,15 @@
   <ion-list>
     <ion-list>
       <ion-item>
-        <ion-input label="Pierre" placeholder="Ecrivez votre nouveau prénom"></ion-input>
+        <ion-input value="{{dresseur.prenom}}"  placeholder="Ecrivez votre nouveau prénom"></ion-input>
       </ion-item>
   
       <ion-item>
-        <ion-input label="Durand" placeholder="Ecrivez votre nouveau nom" ></ion-input>
+        <ion-input label="{{dresseur.nom}}" placeholder="Ecrivez votre nouveau nom" ></ion-input>
       </ion-item>
   
       <ion-item>
-        <ion-input label="pierre22" type="string" placeholder="Ecrivez votre nouveau pseudo" ></ion-input>
+        <ion-input label="{{dresseur.pseudo}}" type="string" placeholder="Ecrivez votre nouveau pseudo" ></ion-input>
       </ion-item>
 
       <ion-item>
@@ -60,9 +56,8 @@
       </ion-item>
   
       <ion-item>
-        <ion-input label="pierre22@gmail.com" type="email" placeholder="Ecrivez votre nouvelle adresse email : email@gmail.com"></ion-input>
+        <ion-input label="{{dresseur.email}}" type="email" placeholder="Ecrivez votre nouvelle adresse email : email@gmail.com"></ion-input>
       </ion-item>
-  
     </ion-list>
   </ion-list>
   <ion-button (click)="goToProfilPage()"  class="custom-confirm-button"color="primary">Confirmer</ion-button>

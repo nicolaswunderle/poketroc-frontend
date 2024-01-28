@@ -35,8 +35,8 @@ export class MessageUtilisateurPage implements OnInit {
     this.router.navigate(['/echangeDetails']);
   }
 
-  goToMessageUtilisateurPage() {
-    this.router.navigate(['/messageUtilisateur']);
+  goToMessagePage() {
+    this.router.navigate(['/message']);
   }
 
   sendMessage() {
