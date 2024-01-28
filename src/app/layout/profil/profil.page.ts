@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/security/auth.service";
 import { logOut as logOutIcon, pencil } from "ionicons/icons";
+import { PictureService } from "src/app/picture/picture.service";
 
 
 @Component({
@@ -15,17 +16,28 @@ import { logOut as logOutIcon, pencil } from "ionicons/icons";
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class ProfilPage implements OnInit {
+  
   readonly logOutIcon = logOutIcon;
   readonly pencil = pencil;
+  dresseur: any;
+  profilePicture :any;
 
   constructor(
     // Inject the authentication provider.
     private auth: AuthService,
     // Inject the router
-    private router: Router
-  ) {}
+    private router: Router,
+    private pictureservice: PictureService
+  ) {
+    this.auth.getUser$().subscribe(dresseur => {
+      this.dresseur = dresseur
+    })
+  }
 
   ngOnInit() {
+    this.profilePicture =  this.pictureservice.getProfilePicture();
+    console.log(this.dresseur)
+
   }
 
   // Add a method to log out.

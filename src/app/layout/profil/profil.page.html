@@ -25,7 +25,7 @@
   </ion-header>
   <ion-item>
     <ion-avatar slot="start">
-      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      <img *ngIf="profilePicture" [src]="profilePicture.url" />
     </ion-avatar>
     <ion-button (click)="goToProfilModificationPage()"color="medium"> <ion-icon [icon]="pencil" class="pencil-icon"></ion-icon></ion-button>
     <ion-label>Profil</ion-label>
@@ -34,27 +34,23 @@
   <ion-list>
     <ion-list>
       <ion-item>
-        <ion-input value="Pierre" readonly></ion-input>
+        <ion-input value="{{dresseur.prenom}}" readonly></ion-input>
       </ion-item>
   
       <ion-item>
-        <ion-input label="Durand" readonly></ion-input>
+        <ion-input label="{{dresseur.nom}}" readonly></ion-input>
       </ion-item>
   
       <ion-item>
-        <ion-input label="pierre22" type="string" readonly></ion-input>
+        <ion-input label="{{dresseur.pseudo}}" type="string" readonly></ion-input>
       </ion-item>
   
       <ion-item>
-        <ion-input label="22.03.2001" readonly></ion-input>
+        <ion-input label="{{dresseur.date_naissance}}" readonly></ion-input>
       </ion-item>
   
       <ion-item>
-        <ion-input label="*********" type="password" readonly></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-input label="pierre22@gmail.com" type="email" readonly></ion-input>
+        <ion-input label="{{dresseur.email}}" type="email" readonly></ion-input>
       </ion-item>
   
     </ion-list>

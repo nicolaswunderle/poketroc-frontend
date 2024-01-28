@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   Camera,
@@ -11,7 +11,7 @@ import { Observable, from } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-
+import { AuthService } from '../security/auth.service';
 //nouveau pour photo
 import { QimgImage } from '../security/image-profil.model';
 //import { QimgImage } from '../models/qimg-image.model';
@@ -21,7 +21,29 @@ import { QimgImage } from '../security/image-profil.model';
  */
 @Injectable({ providedIn: 'root' })
 export class PictureService {
-  constructor(private http: HttpClient) {}
+  private profilePicture: any;
+  
+  setProfilePicture(picture: any) {
+    this.profilePicture = picture.url;
+    console.log(this.profilePicture);
+  }
+
+  getProfilePicture() {
+    const url = environment.apiUrl + `/dresseurs/65a4f3497ca0771b4454a8ae`;
+    this.auth.getToken$().subscribe((token) => {
+      const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
+      this.http.get(url, {headers}).subscribe((res: any) => {
+        console.log(res);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des cartes:', error);
+      });
+    });
+    
+    console.log(this.profilePicture);
+    return this.profilePicture;
+  }
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   /**
    * Takes a picture, uploads it to the qimg API, and returns the created image.
