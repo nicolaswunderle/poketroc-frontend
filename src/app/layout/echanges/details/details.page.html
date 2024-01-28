@@ -27,6 +27,23 @@
     </ion-toolbar>
   </ion-header>
 
+
+  <!-- il y a des échanges -->
+<div *ngIf="echange">
+</div>
+<!-- il y a pas d'échanges -->
+<div *ngIf="!echange">
+
+</div>
+
+  <!--
+
+
+
+
+
+  -->
+
   <ion-card *ngIf="activeSegment === 'moi'">
     <ion-card-header>
       <ion-card-title>LeDresseur souhaite échanger avec vous</ion-card-title>

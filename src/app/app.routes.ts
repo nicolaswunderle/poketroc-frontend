@@ -39,6 +39,10 @@ export const routes: Routes = [
           loadComponent: () => import('./layout/echanges/echanges.page').then(m => m.EchangesPage)
         },
         {
+          path: 'echanges/:echangeId',
+          loadComponent: () => import('./layout/echanges/details/details.page').then(m => m.DetailsPage)
+        },
+        {
           path: 'profil',
           loadComponent: () => import('./layout/profil/profil.page').then(m => m.ProfilPage)
         },
@@ -54,10 +58,7 @@ export const routes: Routes = [
           path: 'echangeCreer',
           loadComponent: () => import('./layout/echange-creer/echange-creer.page').then( m => m.EchangeCreerPage),
         },
-        {
-          path: 'echangeDetails',
-          loadComponent: () => import('./layout/echange-details/echange-details.page').then( m => m.EchangeDetailsPage)
-        },
+       
         {
           path: 'messageUtilisateur',
           loadComponent: () => import('./layout/message-utilisateur/message-utilisateur.page').then( m => m.MessageUtilisateurPage)

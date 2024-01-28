@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { EchangeDetailsPage } from './echange-details.page';
+import { DetailsPage } from './details.page';
 
 describe('EchangeDetailsPage', () => {
   let component: EchangeDetailsPage;

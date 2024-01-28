@@ -27,11 +27,13 @@
     
      
     <ion-avatar slot="start">
+      
+      
       <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
     </ion-avatar>
     <br>
-    <ion-button color="medium">Modifier la photo de profil</ion-button>
-  
+    <ion-button (click)="takePictureTest()" color="medium">Modifier la photo de profil</ion-button>
+    <img *ngIf="picture" [src]="picture.url" />
     <ion-label>Profil</ion-label>
   </ion-item>
   

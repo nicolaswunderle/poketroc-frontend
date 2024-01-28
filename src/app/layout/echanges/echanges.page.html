@@ -15,12 +15,34 @@
       <ion-title size="large">Echanges</ion-title>
     </ion-toolbar>
   </ion-header>
+ <!-- Récupérer tous les échanges -->
+
+  <!-- il y a des échanges -->
+
+  <!-- exemple -->
+  <div *ngIf="echanges && echanges.length > 0">
+    <div *ngFor="let echange of echanges">
+      <h1>La personne qui échange avec vous : NomDuDresseur</h1>
+      <a href="/echange/{{echange.id}}"></a>
+       <p>État dresseur créé: {{ echange.etat_dresseur_cree }}</p>
+        <p>État dresseur concerné: {{ echange.etat_dresseur_concerne }}</p>
+       
+        
+    </div>
+  </div>
+  <!-- il y a pas d'échanges -->
+  <div *ngIf="!echanges|| echanges.length <= 0">
+  <p>Aucun échange disponible pour le moment.</p>
+  </div>
+
+
+
     <ion-card>
       <img alt="Silhouette of mountains" height="300" src="https://ionicframework.com/docs/img/demos/card-media.png" />
       <ion-card-header>
         <ion-card-title>Voici vos échanges en attente</ion-card-title>
       </ion-card-header>
-            <ion-label>Vous avez reçu une demande d'échange de la part de :</ion-label>
+            <ion-label>Vous avez reçu une demande d'échange de la part de : </ion-label>
 
           <ion-item>
             <ion-thumbnail slot="start">
