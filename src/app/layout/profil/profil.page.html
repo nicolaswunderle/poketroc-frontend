@@ -25,7 +25,7 @@
   </ion-header>
   <ion-item>
     <ion-avatar slot="start">
-      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      <img *ngIf="profilePicture" [src]="profilePicture.url" />
     </ion-avatar>
     <ion-button (click)="goToProfilModificationPage()"color="medium"> <ion-icon [icon]="pencil" class="pencil-icon"></ion-icon></ion-button>
     <ion-label>Profil</ion-label>
