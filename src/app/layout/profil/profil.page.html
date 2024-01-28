@@ -23,37 +23,99 @@
     </ion-toolbar>
     
   </ion-header>
-  <ion-item>
-    <ion-avatar slot="start">
-      <img *ngIf="profilePicture" [src]="profilePicture.url" />
-    </ion-avatar>
-    <ion-button (click)="goToProfilModificationPage()"color="medium"> <ion-icon [icon]="pencil" class="pencil-icon"></ion-icon></ion-button>
-    <ion-label>Profil</ion-label>
-  </ion-item>
   
-  <ion-list>
+  <form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
     <ion-list>
       <ion-item>
-        <ion-input value="{{dresseur.prenom}}" readonly></ion-input>
+        <ion-avatar slot="start">
+          <img src="{{dresseur.url_image_profil}}" />
+        </ion-avatar>
       </ion-item>
-  
       <ion-item>
-        <ion-input label="{{dresseur.nom}}" readonly></ion-input>
+        <ion-input 
+          label="Prénom :" 
+          value="{{modification ? '' : dresseur.prenom}}"
+          placeholder="{{dresseur.prenom}}"
+          type="string" 
+          #prenom="ngModel"
+          name="prenom"
+          [(ngModel)]="dresseur.prenom"
+          [readonly]="!modification">
+        </ion-input>
+        <ion-text color="danger" *ngIf="prenom.invalid && prenom.touched"
+        >Le pseudo est requis.</ion-text
+      >
       </ion-item>
-  
-      <ion-item>
-        <ion-input label="{{dresseur.pseudo}}" type="string" readonly></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-input label="{{dresseur.date_naissance}}" readonly></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-input label="{{dresseur.email}}" type="email" readonly></ion-input>
-      </ion-item>
-  
-    </ion-list>
-  </ion-list>
 
+      <ion-item>
+        <ion-input 
+          label="Nom :" 
+          placeholder="{{dresseur.nom}}"
+          type="string"
+          #nom="ngModel"
+          name="nom"
+          [(ngModel)]="dresseur.nom"
+          [readonly]="!modification">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input 
+          label="Pseudo :"
+          placeholder="{{dresseur.pseudo}}"
+          type="string"
+          #pseudo="ngModel"
+          name="pseudo"
+          [(ngModel)]="dresseur.pseudo"
+          [readonly]="!modification">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input 
+          label="Date de naissance :"
+          type="date"
+          #date_naissance="ngModel"
+          name="date_naissance"
+          [(ngModel)]="dresseur.date_naissance"
+          [readonly]="!modification">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input 
+          label="Email :"
+          placeholder="{{dresseur.email}}"
+          type="email"
+          #email="ngModel"
+          name="email"
+          [(ngModel)]="dresseur.email"
+          [readonly]="!modification">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-select 
+          interface="popover"
+          #deck_visible="ngModel"
+          name="deck_visible"
+          [(ngModel)]="dresseur.deck_visible"
+          [disabled]="!modification">
+          <ion-select-option [value]="true">Deck visible par tous les autres dresseurs</ion-select-option>
+          <ion-select-option [value]="false">Deck masqué pour les autres dresseurs</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="modification">
+        <ion-input 
+          label="Mot de passe :"
+          type="password"
+          #mot_de_passe="ngModel"
+          name="mot_de_passe"
+          [(ngModel)]="dresseur.mot_de_passe">
+        </ion-input>
+      </ion-item>
+      <ion-button *ngIf="!modification" (click)="toggleModifications()" expand="block" class="ion-padding"><ion-icon slot="start" [icon]="pencil"></ion-icon>Modifier le profil</ion-button>
+      <ion-button *ngIf="modification" type="submit" expand="block" [disabled]="loginForm.invalid" class="ion-padding"><ion-icon slot="start" [icon]="pencil"></ion-icon>Sauver les modifications</ion-button>
+    </ion-list>
+  </form>
 </ion-content>
