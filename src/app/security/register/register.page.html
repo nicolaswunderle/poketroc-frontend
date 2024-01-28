@@ -13,10 +13,10 @@
   <form class="register-content" (ngSubmit)="onSubmit()" #registerForm="ngForm">
     <ion-list>
       <ion-item>
-        <ion-input type="text" fill="solid" label="Nom" labelPlacement="floating" helperText="Enter a valid firstname" errorText="Invalid firstname" [(ngModel)]="lastname" name="lastname" required text></ion-input>
+        <ion-input type="text" fill="solid" label="Nom" labelPlacement="floating" helperText="Enter a valid name" errorText="Invalid firstname" [(ngModel)]="lastname" name="lastname" required text></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="text" fill="solid" label="Prénom" labelPlacement="floating" helperText="Enter a valid name" errorText="Invalid name" [(ngModel)]="firstname" name="firstname" required text></ion-input>
+        <ion-input type="text" fill="solid" label="Prénom" labelPlacement="floating" helperText="Enter a valid firstname" errorText="Invalid name" [(ngModel)]="firstname" name="firstname" required text></ion-input>
       </ion-item>
       <ion-item>
         <ion-input type="text" fill="solid" label="Pseudo" labelPlacement="floating" helperText="Enter a valid pseudo" errorText="Invalid pseudo" [(ngModel)]="pseudo" name="pseudo" required text></ion-input>
@@ -34,7 +34,7 @@
         <ion-checkbox [(ngModel)]="deck" name="deck">Deck visible</ion-checkbox>
       </ion-item>
     </ion-list>
-    <ion-button expand="full" type="submit" [disabled]="!registerForm.valid">S'inscrire</ion-button>
+    <ion-button  expand="full" type="submit" [disabled]="!registerForm.valid">S'inscrire</ion-button>
   </form>
 </ion-content>
 
