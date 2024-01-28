@@ -33,7 +33,7 @@ export class PictureService {
     this.auth.getToken$().subscribe((token) => {
       const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
       this.http.get(url, {headers}).subscribe((res: any) => {
-        console.log(res);
+        this.profilePicture = res.url_image_profil;
       },
       (error) => {
         console.error('Erreur lors de la récupération des cartes:', error);

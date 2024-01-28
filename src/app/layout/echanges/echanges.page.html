@@ -16,31 +16,6 @@
     </ion-toolbar>
   </ion-header>
 
-
-
- 
-
-  <!-- il y a des échanges -->
-
-  <!-- exemple -->
-  <!-- <div *ngIf="echanges && echanges.length > 0">
-    <div *ngFor="let echange of echanges">
-      <h1>La personne qui échange avec vous :{{echange.autre_dresseur.nom}}</h1>
-      <a href="/echange/{{echange.id}}"></a>
-    <p> id Echange: {{ echange.echange._id}}</p>
-       <p>État dresseur créé: {{ echange.echange.etat_dresseur }}</p>
-        <p>État dresseur concerné: {{echange.echange.etat_autre_dresseur }}</p>
-       
-        
-    </div>
-  </div> -->
-  <!-- il y a pas d'échanges -->
-  <!-- <div *ngIf="!echanges|| echanges.length <= 0">
-  <p>Aucun échange disponible pour le moment.</p>
-  </div> -->
-
-
-
   <ion-card-header>
     <ion-card-title>Voici vos échanges en attente</ion-card-title>
   </ion-card-header>
@@ -72,69 +47,6 @@
             [buttons]="alertButtons"
           ></ion-alert>
           </ion-item>
-<!-- 
-          <ion-item>
-            <ion-thumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-            </ion-thumbnail>
-            <ion-label>sacha</ion-label>
-            <ion-button  id="present-alert-c" (click)="goToEchangePage()"(click)="goToEchangePage()"class="custom-confirm-button-2"color="primary">Confirmer</ion-button>
-            <ion-alert trigger="present-alert-c"
-            header="Confirmation de l'échange"
-            subHeader="Votre échange a été validé."
-            message="Vous pouvez désormais visionner votre nouvel échange dans votre deck."
-            [buttons]="alertButtons"
-          ></ion-alert>
-            <ion-button id="present-alert-g" (click)="goToEchangePage()"class="custom-delete-button-g" color="danger">Supprimer</ion-button>
-            <ion-alert trigger="present-alert-g"
-            header="Suppresion de l'échange"
-            subHeader="Vous avez refusé l'échange"
-            message="La demande d'échange a été supprimée."
-            [buttons]="alertButtons"
-          ></ion-alert>
-          </ion-item>
-
-          <ion-item>
-            <ion-thumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-            </ion-thumbnail>
-            <ion-label>ondine</ion-label>
-            <ion-button id="present-alert-b" (click)="goToEchangePage()" class="custom-confirm-button-1" color="primary">Confirmer</ion-button>
-            <ion-alert trigger="present-alert-b"
-            header="Confirmation de l'échange"
-            subHeader="Votre échange a été validé."
-            message="Vous pouvez désormais visionner votre nouvel échange dans votre deck."
-            [buttons]="alertButtons"
-          ></ion-alert>
-            <ion-button id="present-alert-f" (click)="goToEchangePage()" class="custom-delete-button-f" color="danger">Supprimer</ion-button>
-            <ion-alert trigger="present-alert-f"
-            header="Suppresion de l'échange"
-            subHeader="Vous avez refusé l'échange"
-            message="La demande d'échange a été supprimée."
-            [buttons]="alertButtons"
-          ></ion-alert>
-          </ion-item>
-
-          <ion-item lines="none">
-            <ion-thumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-            </ion-thumbnail>
-            <ion-label>fanPokemon</ion-label>
-            <ion-button id="present-alert-a" (click)="goToEchangePage()" class="custom-confirm-button" color="primary">Confirmer</ion-button>
-            <ion-alert trigger="present-alert-a"
-            header="Confirmation de l'échange"
-            subHeader="Votre échange a été validé."
-            message="Vous pouvez désormais visionner votre nouvel échange dans votre deck."
-            [buttons]="alertButtons"
-            ></ion-alert>
-            <ion-button id="present-alert-e" (click)="goToEchangePage()"class="custom-delete-button-e" color="danger">Supprimer</ion-button>
-            <ion-alert trigger="present-alert-e"
-            header="Suppresion de l'échange"
-            subHeader="Vous avez refusé l'échange"
-            message="La demande d'échange a été supprimée."
-            [buttons]="alertButtons"
-            ></ion-alert>
-          </ion-item>       -->
     </ion-card>
   </div>
 </div>

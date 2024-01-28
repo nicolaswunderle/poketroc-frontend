@@ -24,10 +24,7 @@
   <br>
   <!--Ces boutons s'affichent seulement quand on est sur cartesPkm -->
   <ion-radio-group *ngIf="choix === 'cartesCochees'" [(ngModel)]="choixCartes"> <!--si cartes est sélectionné, nouveauté et pertinence apparaissent-->
-    <ion-radio value="cartesNouveautes" aria-label="Custom checkbox"></ion-radio>
-    <ion-label>Nouveauté&nbsp;</ion-label>
-    <ion-radio value="pertinence" aria-label="Custom checkbox that is checked"></ion-radio>
-    <ion-label>Pertinence</ion-label>
+   
   </ion-radio-group>
   
  <!-- Affiche map quand dresseur est sélectionné-->
@@ -37,6 +34,8 @@
    <!-- <ion-content id="ol-map" class="map-container"></ion-content> -->
 
 <ion-content *ngIf="choix === 'cartesCochees'">
+  <div *ngIf="echanges && echanges.length > 0">
+    <div *ngFor="let echange of echanges"> 
   <ion-card>
     <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
     <ion-card-content>
@@ -49,10 +48,9 @@
       Type : reverse
     </ion-card-content>
     <ion-card-header>
-      <ion-button color="primary">Echanger</ion-button>
-      <ion-card-title>leMeilleurDresseur</ion-card-title>
+      <ion-button (click)="goToEchangeCreerPage()" color="primary">Echanger</ion-button>
     </ion-card-header>
-  
+      <ion-card-title>{{echange.autre_dresseur.nom}}</ion-card-title>
     <ion-card-content>
       J'aime trop Pokémon yeaaahh. 
     </ion-card-content>
@@ -70,13 +68,14 @@
       Type : reverse
     </ion-card-content>
     <ion-card-header>
-      <ion-button color="primary">Echanger</ion-button>
+      <ion-button (click)="goToEchangeCreerPage()"color="primary">Echanger</ion-button>
       <ion-card-title>Ondine</ion-card-title>
     </ion-card-header>
     <ion-card-content>
      Attrapez les tous !
     </ion-card-content>
   </ion-card>
+</div></div>
 </ion-content>
 
 </ion-content>
