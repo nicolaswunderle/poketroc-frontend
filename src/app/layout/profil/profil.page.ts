@@ -36,7 +36,6 @@ export class ProfilPage implements OnInit {
     this.auth.getUser$().subscribe(dresseur => {
       this.dresseur = dresseur;
       this.dresseur.date_naissance = this.convertirDate(this.dresseur.date_naissance);
-      console.log(this.dresseur.date_naissance)
     })
   }
 
