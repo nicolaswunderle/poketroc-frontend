@@ -2,12 +2,36 @@ import { Component, AfterViewInit } from '@angular/core';
 import { Geolocation, Position } from '@capacitor/geolocation';
 import * as L from 'leaflet';
 import { environment } from "src/environments/environment";
-// import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/security/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import { Router } from '@angular/router';
 import { WebsocketService } from '../../../websocket/websocket.service';
 import { WsMessage } from 'src/app/websocket/ws-message.model';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { latLng, MapOptions, tileLayer } from 'leaflet';
+
+// @NgModule({
+//   // ...
+//   imports: [ /* Other imports... */, LeafletModule ]
+//   // ...
+// })
+
+export class ExamplePageModule {
+  // mapOptions: MapOptions;
+
+  // constructor(/* ... */) {
+  //   // ...
+  //  this.mapOptions = {
+  //    layers: [
+  //      tileLayer(
+  //        'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  //        { maxZoom: 18 }
+  //      )
+  //    ],
+  //    zoom: 13,
+  //    center: latLng(46.778186, 6.641524)
+  //  };
+  // }
+}
 
 @Component({
   selector: 'app-map',
@@ -17,54 +41,56 @@ import { WsMessage } from 'src/app/websocket/ws-message.model';
 })
 
 export class MapComponent implements AfterViewInit {
-map: L.Map = {} as L.Map;
-dresseurId: any;
+map: L.Map = {} as L.Map
 dresseur: any;
-websocket: WebSocket | undefined;
 dresseurLatitude: number=0;
 dresseurLongitude: number=0;
 token: any;
 
   constructor(private authService: AuthService, private http: HttpClient, private wsService: WebsocketService) {
-    this.wsService.listen<WsMessage>().subscribe(res => {
-      console.log(res);
+    this.wsService.listen().subscribe( message => {
+      const content = JSON.parse(message);
+     
+      if (content.getDresseurAProximite) {
+        const dresseurs = content.getDresseurAProximite;
+        this.updateMapWithDresseurs(dresseurs);
+      }
     })
-    this.wsService.send({
-      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWE0ZjJkYTdjYTA3NzFiNDQ1NGE4YWEiLCJleHAiOjE3MDY5OTY2MDksImlhdCI6MTcwNjM5MTgwOX0.6WC_jcuqikdgToSEZUiKo-81rnDJZvGIyPyb71bvbX0",
-      localisation: "[46,6]",
-      type : 'getDresseurAProximite'
-    }); 
+  }
+
+  ngAfterViewInit(): void {
+    this.getUserDatas();
+    this.createMap();
   }
 
   // chercher les données utilisateur dans le background
   getUserDatas(){
     // en brut en attendant la liste
-    const url = environment.apiUrl + `/dresseurs/65a4f2da7ca0771b4454a8aa`;
+    const url = environment.apiUrl + `/dresseurs/65a4f2da7ca0771b4454a8aa`; // idDresseur
     this.authService.getToken$().subscribe((token) => {
       this.token = token;
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
+      });
+       //appel WebSocket avec le token
+      this.wsService.send({
+        type: 'getDresseurAProximite',
+        token: this.token,
       });
       this.http.get(url, {headers}).subscribe((donnees: any) => {
         this.dresseur = donnees;
       },
       (error) => {
         console.error('Erreur lors de la récupération des données utilisateur :', error);
-      }
-      )
+      })
     })
   } 
-
-  ngAfterViewInit(): void {
-    this.createMap();
-    this.getUserDatas();
-  }
 
   createMap() {
     Geolocation.getCurrentPosition().then((position: Position) => {
       const lat = position.coords.latitude;
       const lng = position.coords.longitude;
-    
+       
       const zoomLevel = 14;
      
       //créer la carte
@@ -97,24 +123,31 @@ token: any;
 
       // Ajout du marker avec icône personnalisée
       const dresseurUser = L.marker([lat, lng], { icon: customIcon }).addTo(this.map);
-      dresseurUser.bindPopup(`${this.dresseur.pseudo}`).openPopup();
-      // const dresseurListe = L.marker([lat, lng], { icon: customIcon }).addTo(this.map); // changer liste.lat et liste.lng <- en attente
-      //pour autres joueur on recoit une liste avec leur position => boucle for avec const dresseurUser avec nom liste dresseur
+      dresseurUser.bindPopup(`${this.dresseur?.pseudo || 'Dresseur'}`).openPopup();
     })
   }
-  // Mettre à jour la carte avec les utilisateurs à proximité
-  handleNearbyUsers(dresseur: any[]) {
+   
+  updateMapWithDresseurs(dresseurs: any) {
+    console.log("Mettre à jour la carte avec dresseurs : ",dresseurs);
     // Supprimer tous les marqueurs existants sur la carte
-    this.map.eachLayer((layer) => {
+    this.map?.eachLayer(layer => {
       if (layer instanceof L.Marker) {
-        this.map.removeLayer(layer);
+        this.map?.removeLayer(layer);
       }
     });
-    // parcourir le tableau des utilisateurs à proximité et ajouter leur marqueur
-    dresseur.forEach((dresseur) => {
-      const marker = L.marker([dresseur.lat, dresseur.lng]).addTo(this.map);
-      marker.bindPopup(dresseur.pseudo).openPopup();
+    // Pour chaque objet du tableau, prendre localisation.coordinates et créer un marker sur la page
+    dresseurs.forEach((dresseur: any) => {
+      const lat = dresseur.localisation.coordinates[0];
+      const lng = dresseur.localisation.coordinates[1];
+      console.log("latitude : ", lat);
+      // Utiliser la référence à this.map stockée lors de la création de la carte
+        const marker = L.geoJSON(dresseurs.localisation.coordinates).addTo(this.map);
+        console.log("marker : ", marker);
     });
   }
+  
+ 
+  // Gérer les nouveaux messages
   handleNewMessage(message: any) {}
+  
 }
