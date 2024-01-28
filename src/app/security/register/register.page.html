@@ -10,6 +10,8 @@
       <ion-title size="large">Inscription</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-button (click)="takePictureTest()" color="medium" required>Ajouter une photo de profil</ion-button>
+  <img *ngIf="picture" [src]="picture.url" />
   <form class="register-content" (ngSubmit)="onSubmit()" #registerForm="ngForm">
     <ion-list>
       <ion-item>
