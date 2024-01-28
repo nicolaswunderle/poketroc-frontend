@@ -60,12 +60,12 @@ npm i
 
 ### Page connexion / login 
 
-Tout d'abord, l'utilisateur arrive sur la page d'inscription ou de connexion. S'il choisit la page d'inscription, il doit y mettre ses informations personnelles (figurant sur une application de base) ainsi sa photo de profil. Dans le cas où il choisit la page de connexion, il y inscrit son pseudo puis son mot de passe pour accéder à l'incroyable application Pokétroc. 
+Tout d'abord, l'utilisateur arrive sur la page d'inscription ou de connexion. S'il choisit la page d'inscription, il doit y mettre ses informations personnelles (figurant sur une application de base) ainsi que sa photo de profil. Dans le cas où il choisit la page de connexion, il y inscrit son pseudo puis son mot de passe pour accéder à l'incroyable application Pokétroc. 
 
 ### Page d'actualité (Home)
 
 Puis il arrive la page d'actualité. La page d'actualité est une vitrine des cartes Pokémon disponibles pour l'échange. On y voit donc la carte Pokémon ainsi que des informations utiles pour lui (quantité, description...). Il peut ainsi via un bouton entreprendre les démarches faciles pour échanger avec lui. 
-Il a aussi accès à des filtres (Cartes, Dresseurs, Nouveauté, Pertinence) pour lui proposer des choix adaptés à ses besoins. Les fonctionnalités Cartes (cartes proposées pour des échanges) et Nouveauté (trié par ordre temporel) sont proposées par défaut. La fonctionnalité Dresseurs quant à elle est efficace pour savoir quels dresseurs est à proximité de lui. Le filtre Pertinence sert à obtenir les cartes les plus pertinentes en fonction de ses souhaits (pas encore implémenté).
+Il a aussi accès à des filtres (Cartes, Dresseurs) pour lui proposer des choix adaptés à ses besoins. La fonctionnalité Cartes est proposée par défaut et sert à voir les échanges proposés. La fonctionnalité Dresseurs quant à elle est efficace pour savoir quels dresseurs est à proximité de lui.
 
 ### Page deck
 
@@ -74,7 +74,8 @@ La page deck, accessible via le menu, permet de voir l'ensemble de ses cartes. I
 ### Page ajouter carte
 
 Cette page est donc accessible via le deck ou bien vers le menu. Ici, l'utilisateur a deux choix : 
--soit y mettre le numéro de sa carte ( il est nécessaire d'aller sur le lien proposé pour trouver la carte qu'il l'intéresse puis de copier le slug de l'url, à savoir la dernière partie du lien de la carte) et le coller sur l'application. 
+
+- soit y mettre le numéro de sa carte ( il est nécessaire d'aller sur le lien proposé pour trouver la carte qu'il l'intéresse puis de copier le slug de l'url, à savoir la dernière partie du lien de la carte) et le coller sur l'application. 
 - soit d'y inscrire le nom du Pokémon qu'il désire.
 Une fois qu'il a inséré ses cartes, il les verra dans son Deck.
 
