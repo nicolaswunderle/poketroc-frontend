@@ -7,19 +7,21 @@ import { Router } from '@angular/router';
 // import { IonList, IonItem, IonThumbnail, IonLabel } from "@ionic/angular/standalone";
 
 @Component({
-  selector: 'app-deck',
-  templateUrl: './deck.page.html',
-  styleUrls: ['./deck.page.scss'],
+  selector: 'app-deck-choix-echange',
+  templateUrl: './deck-choix-echange.page.html',
+  styleUrls: ['./deck-choix-echange.page.scss'],
   standalone: true,
   imports: [SharedModule]
   // imports: [SharedModule, IonList, IonItem, IonThumbnail, IonLabel]
 })
-export class DeckPage implements OnInit {
+export class DeckChoixEchangePage implements OnInit {
+  alertButtons = ['Fermer'];
   cardsColl: any[] = [];
   cardsWant: any[] = [];
   datasCardsPokColl: any[] = [];
   datasCardsPokWant: any[] = [];
   segmentOption = true;
+  isChecked: boolean = false;
 
   constructor(private authService: AuthService, private readonly http: HttpClient, private router: Router) {
     this.getCards();
@@ -28,16 +30,23 @@ export class DeckPage implements OnInit {
   getCards(){
     const url = environment.apiUrl + '/cartes?statut=collectee';
     const url2 = environment.apiUrl + '/cartes?statut=souhaitee';
+    //const accessToken = this.authService.getToken$();
     this.authService.getToken$().subscribe(
       (token) => {
-        const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
+        const headers = new HttpHeaders({
+          'Authorization': `Bearer ${token}`
+        });
+
         this.http.get(url, {headers}).subscribe(
           (res: any) => {
             res.forEach((e: any) => {
               this.cardsColl.push(e);
               this.getPokemonDatas(e);
             });
-          },(error) => {console.error('Erreur lors de la récupération des cartes:', error);}
+          },
+          (error) => {
+            console.error('Erreur lors de la récupération des cartes:', error);
+          }
         );
         this.http.get(url2, {headers}).subscribe(
           (res: any) => {
@@ -45,16 +54,24 @@ export class DeckPage implements OnInit {
               this.cardsWant.push(e);
               this.getPokemonDatas(e);
             });
-          },(error) => {console.error('Erreur lors de la récupération des cartes:', error);}
+          },
+          (error) => {
+            console.error('Erreur lors de la récupération des cartes:', error);
+          }
         );
-      },(authError) => {console.error('Erreur lors de la récupération du token d\'accès:', authError);}
+      },
+      (authError) => {
+        console.error('Erreur lors de la récupération du token d\'accès:', authError);
+      }
     );
   }
 
   getPokemonDatas(card: any){
     const url = environment.apiPokemonTCGUrl + `/cards/${card.id_api}`;
     const token = environment.tokenPokemonTCG;
-    const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
     this.http.get(url, {headers}).subscribe((res: any) => {
       if(card.statut === 'collectee'){
         this.datasCardsPokColl.push(res.data);
@@ -69,10 +86,8 @@ export class DeckPage implements OnInit {
 
   segmentChanged(ev: any) {
     if (ev.detail.value === 'collected') {
-      this.reloadPage();
       this.segmentOption = true;
     } else {
-      this.reloadPage();
       this.segmentOption = false;
     }
   }
@@ -81,19 +96,18 @@ export class DeckPage implements OnInit {
     this.router.navigate(['/cartes', cardId]).then(() => {
       window.location.reload();
     });
-  }
 
-  reloadPage() {
-    this.router.navigateByUrl('/deck', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/deck']);
-    });
   }
 
   goToAddCardPage(){
     this.router.navigate(['/ajouterCarte']);
   }
 
-  ngOnInit(): void {
+  goToEchangePage(){
+    this.router.navigate(['/echanges']);
+  }
+
+  ngOnInit() {
   }
 
 }

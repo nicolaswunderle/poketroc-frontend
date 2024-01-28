@@ -9,19 +9,8 @@
       <ion-title size="large">Mon deck</ion-title>
     </ion-toolbar>
   </ion-header>
-
- <!-- A garder si jamais la version il y avait des différences entre les versions
-  <ion-list>
-    <ion-item>
-      <ion-thumbnail slot="start">
-        <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-      </ion-thumbnail>
-      <ion-label>NumCarte</ion-label>
-      <ion-label>Quantité</ion-label>
-    </ion-item>
-  </ion-list>
-  -->
-
+  <br>
+  <ion-title>Choissisez la carte à échanger à partir de votre Deck !</ion-title>
   <ion-toolbar>
     <ion-segment (ionChange)="segmentChanged($event)" value="collected">
       <ion-segment-button value="collected">
@@ -32,15 +21,14 @@
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
-  
     <div *ngIf="cardsColl.length > 0 && segmentOption">
-      <h1>Mes collections</h1>
-      <p>Toutes les cartes que je possède sont ici.</p>
       <ion-grid [fixed]="true">
         <ion-row>
           <div *ngFor="let card of cardsColl">
             <ion-col size="3">
-              <ion-card (click)="goToCardPage(card._id)">
+         <div>
+            <ion-checkbox></ion-checkbox> 
+              <ion-card>
                 <div *ngIf="datasCardsPokColl">
                   <div *ngFor="let pokData of datasCardsPokColl">
                     <div *ngIf="pokData.id === card.id_api">
@@ -54,32 +42,35 @@
                   </div>
                 </div>
               </ion-card>
+            </div>
             </ion-col>
           </div>
         </ion-row>
       </ion-grid>
     </div>
     <div *ngIf="cardsWant.length > 0 && !segmentOption">
-      <h1>Mes souhaits</h1>
-      <p>Toutes les cartes que je souhaite avoir et que je n'ai pas sont ici.</p>
       <ion-grid [fixed]="true">
         <ion-row>
           <div *ngFor="let card of cardsWant">
             <ion-col size="3">
-              <ion-card (click)="goToCardPage(card._id)">
+              <ion-radio-group value="custom-checked">
+              <ion-card >
                 <div *ngIf="datasCardsPokWant">
                   <div *ngFor="let pokData of datasCardsPokWant">
                     <div *ngIf="pokData.id === card.id_api">
-                      <img alt="Silhouette of mountains" src="{{pokData.images.small}}" />
-                      <ion-card-header>
-                        <ion-card-subtitle>Type: {{ card.type }}</ion-card-subtitle>
-                        <ion-card-content><h2 style="color: white;">{{pokData.name}}</h2></ion-card-content>
-                        <ion-card-subtitle class="ion-text-end">Qté: {{card.quantite}}</ion-card-subtitle>
-                      </ion-card-header>
+                          <img alt="Silhouette of mountains" src="{{pokData.images.small}}" />
+                      <ion-card>
+                        <ion-card-header>
+                         <ion-card-subtitle>Type: {{ card.type }}</ion-card-subtitle> 
+                          <ion-card-content><h2 style="color: white;">{{pokData.name}}</h2></ion-card-content>
+                          <ion-card-subtitle class="ion-text-end">Qté: {{card.quantite}}</ion-card-subtitle>
+                        </ion-card-header>
+                      </ion-card>
                     </div>
                   </div>
                 </div>
               </ion-card>
+            </ion-radio-group>
             </ion-col>
           </div>
         </ion-row>
@@ -95,4 +86,13 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-button id="present-alert" (click)="goToEchangePage()"  class="custom-confirm-button"color="primary">Confirmer</ion-button>
+  <ion-alert
+  trigger="present-alert"
+  header="Confirmation de l'échange"
+  subHeader="Votre échange a été validé."
+  message="Une demande a été envoyée auprès de l'autre dresseur."
+  [buttons]="alertButtons"
+></ion-alert>
+
 </ion-content>

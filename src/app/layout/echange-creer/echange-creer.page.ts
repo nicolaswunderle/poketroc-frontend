@@ -4,18 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import {caretBack, caretForward} from 'ionicons/icons';
 import {addIcons} from 'ionicons';
-import { Router , ActivatedRoute} from '@angular/router';
-
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-echange-details',
-  templateUrl: './echange-details.page.html',
-  styleUrls: ['./echange-details.page.scss'],
+  selector: 'app-echange-creer',
+  templateUrl: './echange-creer.page.html',
+  styleUrls: ['./echange-creer.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class EchangeDetailsPage implements OnInit {
-alertButtons = ['Fermer'];
+export class EchangeCreerPage implements OnInit {
 activeSegment: string = 'moi';
 segmentOption = true;
 images: string[] = [
@@ -25,7 +23,7 @@ images: string[] = [
 ];
 currentImageIndex: number = 0;
 
-  constructor(private route: ActivatedRoute, private router: Router) { 
+  constructor(private router: Router) { 
     addIcons({
       caretForward: caretForward,
       caretBack: caretBack
@@ -34,13 +32,8 @@ currentImageIndex: number = 0;
 
   ngOnInit() {
   }
-  goToEchangesPage(){
-    this.router.navigate(['/echanges']);
   
-  }
-  goToUserMessagePage() {
-    this.router.navigate(['/messageUtilisateur']);
-  }
+
   segmentChanged(ev: any) {
     if (ev.detail.value === 'moi') {
       this.segmentOption = true;
@@ -58,5 +51,7 @@ currentImageIndex: number = 0;
       this.currentImageIndex++;
   } 
 }
-
+goToDeckPage(){
+  this.router.navigate(['/deckChoixEchange']);
+}
 }

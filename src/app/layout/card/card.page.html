@@ -34,7 +34,7 @@
               </ion-list>
               <ion-list lines="none">
                 <ion-item color="warning">
-                  <ion-text><h3>Ta carte</h3></ion-text>
+                  <ion-text><h3>Votre carte</h3></ion-text>
                 </ion-item>
                 <ion-item>
                   <ion-label><ion-text color="medium">État: </ion-text>{{card.etat}}</ion-label>
@@ -49,12 +49,12 @@
                   <ion-label><ion-text color="medium">Statut: </ion-text>{{card.statut}}</ion-label>
                 </ion-item>
                 <ion-item>
-                  <ion-label><ion-text color="medium">Quantitée: </ion-text>{{card.quantite}}</ion-label>
+                  <ion-label><ion-text color="medium">Quantité: </ion-text>{{card.quantite}}</ion-label>
                 </ion-item>
               </ion-list>
-              <ion-button (click)="goToEchangePage(card._id)" expand="block" color="secondary" >Échanger ta carte</ion-button>
-              <ion-button (click)="goToPatchPage(card._id)" expand="block" color="secondary" >Modifier ta carte</ion-button>
-              <ion-button id="delete-alert" expand="block" color="danger" >Supprimer ta carte</ion-button>
+              <ion-button (click)="goToEchangePage(card._id)" expand="block" color="secondary" >Échanger votre carte</ion-button>
+              <ion-button (click)="goToPatchPage(card._id)" expand="block" color="secondary" >Modifier votre carte</ion-button>
+              <ion-button id="delete-alert" expand="block" color="danger" >Supprimer votre carte</ion-button>
               <ion-alert trigger="delete-alert" header="Voulez-vous supprimer cette carte?" [buttons]="alertButtons" ></ion-alert>
             </ion-col>
           </ion-row>

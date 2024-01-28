@@ -1,36 +1,31 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Message</ion-title>
-   
   </ion-toolbar>
   <ion-button (click)="goToMessageEcrirePage()" color="medium"> <ion-icon name="create"></ion-icon> </ion-button>
   <ion-toolbar collapse="condense">
     <ion-searchbar></ion-searchbar>
   </ion-toolbar>
-  
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Message</ion-title>
-      
     </ion-toolbar>
     <ion-toolbar>
       <ion-searchbar></ion-searchbar>
     </ion-toolbar>
   </ion-header>
+
   <ion-list [inset]="true">
-   
-  
     <ion-icon name="createIcon"></ion-icon>
     <ion-item [button]="true" detail="false">
       <div class="unread-indicator-wrapper" slot="start">
         <div class="unread-indicator"></div>
       </div>
-      
       <ion-label>
-        <ion-button> <strong>sacha245</strong></ion-button>
+       <strong>sacha245</strong>
         <br />
         <ion-note color="medium" class="ion-text-wrap">
           Bonjour, je suis ravie que vous ma carte...
@@ -45,13 +40,14 @@
       <div class="unread-indicator-wrapper" slot="start">
         <div class="unread-indicator"></div>
       </div>
-      <ion-label>
-        <strong>LeDresseur</strong>
-        <br />
-        <ion-note color="medium" class="ion-text-wrap">
-          Gros coup de coeur oui ...
-        </ion-note>
-      </ion-label>
+      <ion-item [button]="true" detail="false" (click)="goToMessageUtilisateurPage('LeDresseur')" class="message-item">
+        <div class="message-container">
+          <strong>LeDresseur</strong>
+          <ion-note color="medium" class="ion-text-wrap">
+            Gros coup de coeur oui ...
+          </ion-note>
+        </div>
+      </ion-item>
       <div class="metadata-end-wrapper" slot="end">
         <ion-note color="medium">06:11</ion-note>
         <ion-icon color="medium" name="chevron-forward"></ion-icon>
