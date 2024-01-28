@@ -3,6 +3,7 @@ import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { Storage } from "@ionic/storage-angular";
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @Component({
   selector: 'app-root',
@@ -15,3 +16,9 @@ export class AppComponent {
     storage.create();
   }
 }
+// @NgModule({
+//   // ...
+//   imports: [ /* Other imports... */, LeafletModule ]
+//   // ...
+// })
+// export class AppModule {}
