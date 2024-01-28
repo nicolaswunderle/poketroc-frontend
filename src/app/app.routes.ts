@@ -96,7 +96,7 @@ export const routes: Routes = [
     loadComponent: () => import('./security/welcome/welcome.page').then( m => m.WelcomePage)
   },
   {
-    path: 'connecion',
+    path: 'connexion',
     loadComponent: () => import('./security/login/login.page').then( m => m.LoginPage)
   },
   {
