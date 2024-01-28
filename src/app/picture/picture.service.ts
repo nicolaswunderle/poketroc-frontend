@@ -36,10 +36,7 @@ export class PictureService {
     return this.takePicture().pipe(
       // Once the picture has been taken, upload it to the qimg API.
       // This returns a new observable of the resulting QimgImage object.
-      switchMap((data) => {
-      return this.uploadPicture(data.base64String)
-      }
-        ),
+      switchMap((data) => this.uploadPicture(data.base64String)),
       // Once the picture has been uploaded, log a message to the console
       // indicating that all went well.
       // This does not change the observable stream and you can delete this
