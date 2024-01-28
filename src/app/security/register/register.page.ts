@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ViewDidEnter } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { environment } from "src/environments/environment";
+import { Router } from "@angular/router";
+
 
 @Component({
   selector: 'app-register',
@@ -22,24 +24,31 @@ export class RegisterPage implements ViewDidEnter {
   date: string = '';
   deck: boolean = false;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient, private router: Router) { }
+    
+  
 
   onSubmit(){
     const user={
-      lastname: this.lastname,
-      firstname: this.firstname,
+      nom: this.lastname,
+      prenom: this.firstname,
       pseudo: this.pseudo,
       email: this.email,
-      password: this.password,
-      date: this.date,
-      deck: this.deck,
+      mot_de_passe: this.password,
+      date_naissance: this.date,
+      deck_visible: this.deck,
+
+      //rajouter image + en ligne
+      //mettre en dur -> demander à karen
       localisation: { "type": "Point", "coordinates": [ -74 , 7 ] },
     };
+    //il manque dans exemple : en ligne, deck visible et image
     const userExemple = {"prenom": "Nicolas", "nom": "Wunderle", "pseudo":"nw", "email": "nicolas.wunderle@heig-vd.ch", "date_naissance": "1999-11-14", "localisation": { "type": "Point", "coordinates": [ -74 , 7 ] }, "mot_de_passe": "12345"};
 
     console.log(user);
 
     this.sendDataToBackend(user);
+    this.router.navigate(['/login']);
   }
 
   private sendDataToBackend(user: any): void {
@@ -61,5 +70,6 @@ export class RegisterPage implements ViewDidEnter {
 
   ngOnInit() {}
 
+  
 }
 

@@ -52,6 +52,7 @@ export class EchangesPage implements OnInit {
       this.http.get(url, {headers}).subscribe((res:any) => {
         this.echanges = res;
         console.log(this.echanges);
+        
       },
       (error) => {
         console.error('Erreur lors de la récupération des échanges:', error);
