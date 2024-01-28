@@ -28,9 +28,3 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(withInterceptors([ authInterceptor ])),
   ]
 });
-
-
-// platformBrowserDynamic()
-//   .bootstrapModule(AppModule)
-//   .then(() => defineCustomElements(window)) // Add this line
-//   .catch((err) => console.log(err));
