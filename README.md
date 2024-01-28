@@ -2,7 +2,7 @@
 
 Pokétroc est une API REST conçue pour stocker son deck de cartes Pokémon ainsi que gérer des échanges de cartes avec des personnes à proximité de soi, intégrant des fonctionnalités de notification via WebSocket.
 
-L'application a été inspirée de l'univers de Pokémon est d'Instagram et est destinée aux dresseurs de cartes passionnés par l'univers Pokémon. Attrappez toutes les cartes, Pokétroc ! 
+L'application a été inspirée de l'univers de Pokémon et d'Instagram et est destinée aux dresseurs de cartes passionnés par l'univers Pokémon. Attrappez toutes les cartes, Pokétroc ! 
 
 
 ## Fonctionnalités 
