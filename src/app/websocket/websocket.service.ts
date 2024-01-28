@@ -26,7 +26,7 @@ export class WebsocketService {
         switchMap(socket =>
           new Observable((subscriber: Observer<MessageEvent<T>>) => {
             // When a new message is received, the Observable will emit this message
-           socket.onmessage = message => subscriber.next(message);
+            socket.onmessage = message => subscriber.next(message);
             // When a websocket error occurs, the Observable will emit a new error
            socket.onerror = error => subscriber.error(error);
             // When the websocket closes, the observable completes

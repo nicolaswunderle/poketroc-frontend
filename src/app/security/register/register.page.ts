@@ -48,11 +48,11 @@ picture:any;
       date_naissance: this.date,
       deck_visible: this.deck,
       url_image_profil:this.picture.url,
-      //rajouter image + en ligne
-      //mettre en dur -> demander à karen
+    
+      //mettre en dur 
       localisation: { "type": "Point", "coordinates": [ -74 , 7 ] },
     };
-    //il manque dans exemple : en ligne, deck visible et image
+    //il manque dans l'exemple : en ligne, deck visible et image
     const userExemple = {"prenom": "Nicolas", "nom": "Wunderle", "pseudo":"nw", "email": "nicolas.wunderle@heig-vd.ch", "date_naissance": "1999-11-14", "localisation": { "type": "Point", "coordinates": [ -74 , 7 ] }, "mot_de_passe": "12345"};
 
     console.log(user);
